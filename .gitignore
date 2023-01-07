@@ -1,3 +1,6 @@
 # Ignore executables and dll's
 *.exe
 *.dll
+
+# Ignore caches made by clangd
+.cache/

@@ -1,0 +1,23 @@
+[
+ {
+  "directory": "C:\\Dev\\learning-sdl2",
+  "arguments": [
+   "g++",
+   "-g",
+   "-std=c++14",
+   "-m64",
+   "-I",
+   "C:/Dev/vcpkg/installed/x64-mingw-dynamic/include",
+   "-L",
+   "C:/Dev/vcpkg/installed/x64-mingw-dynamic/lib",
+   "-lmingw32",
+   "-lSDL2main",
+   "-lSDL2",
+   "-lSDL2_image",
+   "./src/main.cpp",
+   "-o",
+   "main"
+  ],
+  "file": "./src/main.cpp"
+ }
+]
