@@ -1,0 +1,3 @@
+# Ignore executables and dll's
+*.exe
+*.dll
