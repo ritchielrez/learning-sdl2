@@ -28,8 +28,20 @@ SDL_Texture *RenderWindow::loadTexture(const char *filePath) {
 
 void RenderWindow::clear() { SDL_RenderClear(renderer); }
 
-void RenderWindow::render(SDL_Texture *texture) {
-  SDL_RenderCopy(renderer, texture, NULL, NULL);
+void RenderWindow::render(Entity &entity) {
+  SDL_Rect src;
+  src.x = entity.currentFrame.x;
+  src.y = entity.currentFrame.y;
+  src.w = entity.currentFrame.w;
+  src.h = entity.currentFrame.h;
+
+  SDL_Rect dst;
+  dst.x = entity.x * 4;
+  dst.y = entity.y * 4;
+  dst.w = entity.currentFrame.w * 4;
+  dst.h = entity.currentFrame.h * 4;
+
+  SDL_RenderCopy(renderer, entity.texture, &src, &dst);
 }
 
 void RenderWindow::display() { SDL_RenderPresent(renderer); }

@@ -1,3 +1,4 @@
+#include "Entity.hpp"
 #include "RenderWindow.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -15,6 +16,8 @@ int main(int argc, char *argv[]) {
 
   SDL_Texture *grassTexture = window.loadTexture("res/gfx/ground_grass_1.png");
 
+  Entity platform0(100, 50, grassTexture);
+
   bool gameRunning = true;
 
   SDL_Event event;
@@ -25,7 +28,7 @@ int main(int argc, char *argv[]) {
         gameRunning = false;
     }
     window.clear();
-    window.render(grassTexture);
+    window.render(platform0);
     window.display();
   }
 
