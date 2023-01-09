@@ -1,5 +1,6 @@
 #include "Entity.hpp"
 #include "RenderWindow.hpp"
+#include "Utils.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
@@ -23,29 +24,59 @@ int main(int argc, char *argv[]) {
   //     Entity(30, 30, grassTexture),
   //     Entity(30, 60, grassTexture),
   // };
-  std::vector<Entity> entities_vect = {
-      Entity(Vector2f(0, 0), grassTexture),
-      Entity(Vector2f(30, 0), grassTexture),
-      Entity(Vector2f(30, 30), grassTexture),
-      Entity(Vector2f(30, 60), grassTexture),
+  std::vector<Entity> entities = {
+      Entity(Vector2f(0, 160), grassTexture),
+      Entity(Vector2f(30, 160), grassTexture),
+      Entity(Vector2f(60, 160), grassTexture),
+      Entity(Vector2f(90, 160), grassTexture),
+      Entity(Vector2f(120, 160), grassTexture),
+      Entity(Vector2f(150, 160), grassTexture),
+      Entity(Vector2f(180, 160), grassTexture),
+      Entity(Vector2f(210, 160), grassTexture),
+      Entity(Vector2f(240, 160), grassTexture),
+      Entity(Vector2f(270, 160), grassTexture),
+      Entity(Vector2f(300, 160), grassTexture),
   };
 
   bool gameRunning = true;
 
   SDL_Event event;
 
+  const float timeStep = 0.01f;
+  float accumlator = 0.0f;
+  float currentTime = utils::hireTimeInSeconds();
+
   while (gameRunning) {
-    while (SDL_PollEvent(&event)) {
-      if (event.type == SDL_QUIT)
-        gameRunning = false;
+    int startTicks = SDL_GetTicks();
+    float newTime = utils::hireTimeInSeconds();
+    float frameTime = newTime - currentTime;
+
+    currentTime = newTime;
+    accumlator += currentTime;
+
+    while (accumlator >= timeStep) {
+      while (SDL_PollEvent(&event)) {
+        if (event.type == SDL_QUIT)
+          gameRunning = false;
+      }
+
+      accumlator -= timeStep;
     }
+    const float alpha = accumlator / timeStep;
+
     window.clear();
 
-    for(Entity &entity: entities_vect) {
-        window.render(entity);
+    for (Entity &entity : entities) {
+      window.render(entity);
     }
 
     window.display();
+
+    int frameTicks = SDL_GetTicks() - startTicks;
+
+    if(frameTicks < 1000 / window.getRefreshRate()) {
+        SDL_Delay(1000 / window.getRefreshRate() - frameTicks);
+    }
   }
 
   SDL_Quit();

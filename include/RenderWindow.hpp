@@ -10,6 +10,7 @@ public:
   void clear();
   void render(Entity &entity);
   void display();
+  int getRefreshRate();
   ~RenderWindow();
 
 private:

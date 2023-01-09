@@ -1,5 +1,6 @@
 #include "RenderWindow.hpp"
 #include "SDL2/SDL_render.h"
+#include "SDL2/SDL_video.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
@@ -13,7 +14,7 @@ RenderWindow::RenderWindow(const char *title, int width, int height)
   if (window == NULL)
     std::cout << "Window failed to init, Error: " << SDL_GetError() << "\n";
 
-  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED && SDL_RENDERER_PRESENTVSYNC); 
+  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC); 
 }
 
 SDL_Texture *RenderWindow::loadTexture(const char *filePath) {
@@ -45,5 +46,14 @@ void RenderWindow::render(Entity &entity) {
 }
 
 void RenderWindow::display() { SDL_RenderPresent(renderer); }
+
+int RenderWindow::getRefreshRate() {
+  int displayIndex = SDL_GetWindowDisplayIndex(window);
+  SDL_DisplayMode mode;
+
+  SDL_GetDisplayMode(displayIndex, 0, &mode);
+
+  return mode.refresh_rate;
+}
 
 RenderWindow::~RenderWindow() { SDL_DestroyWindow(window); }
