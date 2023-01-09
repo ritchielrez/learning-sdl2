@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
+#include <vector>
 
 int main(int argc, char *argv[]) {
   if (SDL_Init(SDL_INIT_VIDEO > 0))
@@ -22,6 +23,12 @@ int main(int argc, char *argv[]) {
       Entity(30, 30, grassTexture),
       Entity(30, 60, grassTexture),
   };
+  std::vector<Entity> entities_vect = {
+      Entity(0, 0, grassTexture),
+      Entity(30, 0, grassTexture),
+      Entity(30, 30, grassTexture),
+      Entity(30, 60, grassTexture),
+  };
 
   bool gameRunning = true;
 
@@ -34,7 +41,7 @@ int main(int argc, char *argv[]) {
     }
     window.clear();
 
-    for(Entity &entity: entities) {
+    for(Entity &entity: entities_vect) {
         window.render(entity);
     }
 
