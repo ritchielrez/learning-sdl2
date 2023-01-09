@@ -1,9 +1,10 @@
 #include "Entity.hpp"
+#include "Math.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-Entity::Entity(float p_x, float p_y, SDL_Texture *p_texture)
-    : x(p_x), y(p_y), texture(p_texture) {
+Entity::Entity(Vector2f p_pos, SDL_Texture *p_texture)
+    : pos(p_pos), texture(p_texture) {
   currentFrame.x = 0;
   currentFrame.y = 0;
   currentFrame.w = 32;

@@ -17,17 +17,17 @@ int main(int argc, char *argv[]) {
 
   SDL_Texture *grassTexture = window.loadTexture("res/gfx/ground_grass_1.png");
 
-  Entity entities[] = {
-      Entity(0, 0, grassTexture),
-      Entity(30, 0, grassTexture),
-      Entity(30, 30, grassTexture),
-      Entity(30, 60, grassTexture),
-  };
+  // Entity entities[] = {
+  //     Entity(0, 0, grassTexture),
+  //     Entity(30, 0, grassTexture),
+  //     Entity(30, 30, grassTexture),
+  //     Entity(30, 60, grassTexture),
+  // };
   std::vector<Entity> entities_vect = {
-      Entity(0, 0, grassTexture),
-      Entity(30, 0, grassTexture),
-      Entity(30, 30, grassTexture),
-      Entity(30, 60, grassTexture),
+      Entity(Vector2f(0, 0), grassTexture),
+      Entity(Vector2f(30, 0), grassTexture),
+      Entity(Vector2f(30, 30), grassTexture),
+      Entity(Vector2f(30, 60), grassTexture),
   };
 
   bool gameRunning = true;
