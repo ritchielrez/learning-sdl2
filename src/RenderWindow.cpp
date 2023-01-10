@@ -29,22 +29,35 @@ SDL_Texture *RenderWindow::loadTexture(const char *filePath) {
 
 void RenderWindow::clear() { SDL_RenderClear(renderer); }
 
-void RenderWindow::render(Entity &entity) {
+void RenderWindow::render(Entity &entity, int scale) {
   SDL_Rect src;
   src.x = entity.currentFrame.x;
   src.y = entity.currentFrame.y;
-  src.w = entity.currentFrame.w;
-  src.h = entity.currentFrame.h;
+  SDL_QueryTexture(entity.texture, NULL, NULL, &src.w, &src.h);
 
   SDL_Rect dst;
-  dst.x = entity.pos.x * 4;
-  dst.y = entity.pos.y * 4;
-  dst.w = entity.currentFrame.w * 4;
-  dst.h = entity.currentFrame.h * 4;
+  dst.x = entity.pos.x * scale;
+  dst.y = entity.pos.y * scale;
+  dst.w = src.w * scale;
+  dst.h = src.h * scale;
 
   SDL_RenderCopy(renderer, entity.texture, &src, &dst);
 }
 
+void RenderWindow::render(Entity &entity) {
+  SDL_Rect src;
+  src.x = entity.currentFrame.x;
+  src.y = entity.currentFrame.y;
+  SDL_QueryTexture(entity.texture, NULL, NULL, &src.w, &src.h);
+
+  SDL_Rect dst;
+  dst.x = entity.pos.x;
+  dst.y = entity.pos.y;
+  dst.w = src.w;
+  dst.h = src.h;
+
+  SDL_RenderCopy(renderer, entity.texture, &src, &dst);
+}
 void RenderWindow::display() { SDL_RenderPresent(renderer); }
 
 int RenderWindow::getRefreshRate() {

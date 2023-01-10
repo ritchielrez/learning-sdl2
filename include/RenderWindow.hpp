@@ -8,6 +8,7 @@ public:
   RenderWindow(const char *title, int width, int height);
   SDL_Texture *loadTexture(const char *filePath);
   void clear();
+  void render(Entity &entity, int scale);
   void render(Entity &entity);
   void display();
   int getRefreshRate();
