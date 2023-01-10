@@ -24,19 +24,25 @@ int main(int argc, char *argv[]) {
   //     Entity(30, 30, grassTexture),
   //     Entity(30, 60, grassTexture),
   // };
-  std::vector<Entity> entities = {
-      Entity(Vector2f(0, 160), grassTexture),
-      Entity(Vector2f(30, 160), grassTexture),
-      Entity(Vector2f(60, 160), grassTexture),
-      Entity(Vector2f(90, 160), grassTexture),
-      Entity(Vector2f(120, 160), grassTexture),
-      Entity(Vector2f(150, 160), grassTexture),
-      Entity(Vector2f(180, 160), grassTexture),
-      Entity(Vector2f(210, 160), grassTexture),
-      Entity(Vector2f(240, 160), grassTexture),
-      Entity(Vector2f(270, 160), grassTexture),
-      Entity(Vector2f(300, 160), grassTexture),
-  };
+  // std::vector<Entity> entities = {
+  //     Entity(Vector2f(0, 150), grassTexture),
+  //     Entity(Vector2f(30, 150), grassTexture),
+  //     Entity(Vector2f(60, 150), grassTexture),
+  //     Entity(Vector2f(90, 150), grassTexture),
+  //     Entity(Vector2f(120, 150), grassTexture),
+  //     Entity(Vector2f(150, 150), grassTexture),
+  //     Entity(Vector2f(180, 150), grassTexture),
+  //     Entity(Vector2f(210, 150), grassTexture),
+  //     Entity(Vector2f(240, 150), grassTexture),
+  //     Entity(Vector2f(270, 150), grassTexture),
+  //     Entity(Vector2f(300, 150), grassTexture),
+  // };
+
+  std::vector<Entity> platform;
+
+  for(int x = 0; x <= 300; x += 30) {
+    platform.push_back(Entity(Vector2f(x, 150), grassTexture));
+  }
 
   bool gameRunning = true;
 
@@ -66,7 +72,7 @@ int main(int argc, char *argv[]) {
 
     window.clear();
 
-    for (Entity &entity : entities) {
+    for (Entity &entity : platform) {
       window.render(entity);
     }
 
