@@ -18,26 +18,6 @@ int main(int argc, char *argv[]) {
 
   SDL_Texture *grassTexture = window.loadTexture("res/gfx/ground_grass_1.png");
 
-  // Entity entities[] = {
-  //     Entity(0, 0, grassTexture),
-  //     Entity(30, 0, grassTexture),
-  //     Entity(30, 30, grassTexture),
-  //     Entity(30, 60, grassTexture),
-  // };
-  // std::vector<Entity> entities = {
-  //     Entity(Vector2f(0, 150), grassTexture),
-  //     Entity(Vector2f(30, 150), grassTexture),
-  //     Entity(Vector2f(60, 150), grassTexture),
-  //     Entity(Vector2f(90, 150), grassTexture),
-  //     Entity(Vector2f(120, 150), grassTexture),
-  //     Entity(Vector2f(150, 150), grassTexture),
-  //     Entity(Vector2f(180, 150), grassTexture),
-  //     Entity(Vector2f(210, 150), grassTexture),
-  //     Entity(Vector2f(240, 150), grassTexture),
-  //     Entity(Vector2f(270, 150), grassTexture),
-  //     Entity(Vector2f(300, 150), grassTexture),
-  // };
-
   std::vector<Entity> platform;
 
   for(int x = 0; x <= 300; x += 30) {
