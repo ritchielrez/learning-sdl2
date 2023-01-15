@@ -1,5 +1,6 @@
 #include "Entity.hpp"
 #include "Math.hpp"
+#include "Player.hpp"
 #include "RenderWindow.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -22,7 +23,7 @@ int main(int argc, char *argv[]) {
   SDL_Texture *grassTexture = window.loadTexture("res/gfx/ground_grass_1.png");
   SDL_Texture *playerTexture = window.loadTexture("res/gfx/hulking_knight.png");
 
-  Entity player(Vector2f(0, 0), playerTexture);
+  Player player(Vector2f(0, 0), playerTexture);
   std::vector<Entity> platform;
 
   for (int x = 0; x <= 300; x += 30) {
@@ -46,7 +47,7 @@ int main(int argc, char *argv[]) {
 
     window.clear();
 
-    window.render(player);
+    window.render(player, 4);
     for (Entity &entity : platform) {
       window.render(entity, 4);
     }

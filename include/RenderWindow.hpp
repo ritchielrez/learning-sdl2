@@ -1,5 +1,6 @@
 #pragma once
 #include "Entity.hpp"
+#include "Player.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
@@ -8,6 +9,7 @@ public:
   RenderWindow(const char *title, int width, int height);
   SDL_Texture *loadTexture(const char *filePath);
   void clear();
+  void render(Player &player, int scale);
   void render(Vector2f pos, SDL_Texture *texture, int scale);
   void render(Entity &entity, int scale);
   void render(Entity &entity);

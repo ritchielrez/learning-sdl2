@@ -1,12 +1,12 @@
 #include "RenderWindow.hpp"
 #include "Math.hpp"
+#include "Player.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
 
 RenderWindow::RenderWindow(const char *title, int width, int height)
-    : window(NULL), renderer(NULL)
-{
+    : window(NULL), renderer(NULL) {
   window =
       SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                        width, height, SDL_WINDOW_SHOWN);
@@ -18,8 +18,7 @@ RenderWindow::RenderWindow(const char *title, int width, int height)
       window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
-SDL_Texture *RenderWindow::loadTexture(const char *filePath)
-{
+SDL_Texture *RenderWindow::loadTexture(const char *filePath) {
   SDL_Texture *texture = NULL;
   texture = IMG_LoadTexture(renderer, filePath);
 
@@ -29,14 +28,27 @@ SDL_Texture *RenderWindow::loadTexture(const char *filePath)
   return texture;
 }
 
-void RenderWindow::clear()
-{
+void RenderWindow::clear() {
   SDL_SetRenderDrawColor(renderer, 135, 206, 235, 255);
   SDL_RenderClear(renderer);
 }
 
-void RenderWindow::render(Vector2f pos, SDL_Texture *texture, int scale)
-{
+void RenderWindow::render(Player &player, int scale) {
+  SDL_Rect src;
+  src.x = player.currentFrame.x;
+  src.y = player.currentFrame.y;
+  src.w = player.currentFrame.w;
+  src.h = player.currentFrame.h;
+
+  SDL_Rect dst;
+  dst.x = player.pos.x * scale;
+  dst.y = player.pos.y * scale;
+  dst.w = src.w * scale;
+  dst.h = src.h * scale;
+
+  SDL_RenderCopy(renderer, player.texture, &src, &dst);
+}
+void RenderWindow::render(Vector2f pos, SDL_Texture *texture, int scale) {
   SDL_Rect src;
   src.x = 0;
   src.y = 0;
@@ -50,8 +62,7 @@ void RenderWindow::render(Vector2f pos, SDL_Texture *texture, int scale)
 
   SDL_RenderCopy(renderer, texture, &src, &dst);
 }
-void RenderWindow::render(Entity &entity, int scale)
-{
+void RenderWindow::render(Entity &entity, int scale) {
   SDL_Rect src;
   src.x = entity.currentFrame.x;
   src.y = entity.currentFrame.y;
@@ -66,9 +77,7 @@ void RenderWindow::render(Entity &entity, int scale)
 
   SDL_RenderCopy(renderer, entity.texture, &src, &dst);
 }
-
-void RenderWindow::render(Entity &entity)
-{
+void RenderWindow::render(Entity &entity) {
   SDL_Rect src;
   src.x = entity.currentFrame.x;
   src.y = entity.currentFrame.y;
@@ -84,8 +93,7 @@ void RenderWindow::render(Entity &entity)
 }
 void RenderWindow::display() { SDL_RenderPresent(renderer); }
 
-int RenderWindow::getRefreshRate()
-{
+int RenderWindow::getRefreshRate() {
   int displayIndex = SDL_GetWindowDisplayIndex(window);
   SDL_DisplayMode mode;
 
