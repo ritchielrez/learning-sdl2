@@ -1,4 +1,5 @@
 #include "Entity.hpp"
+#include "Math.hpp"
 #include "RenderWindow.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -19,7 +20,9 @@ int main(int argc, char *argv[]) {
   RenderWindow window("Game v1.0", SCREEN_WIDTH, SCREEN_HEIGHT);
 
   SDL_Texture *grassTexture = window.loadTexture("res/gfx/ground_grass_1.png");
+  SDL_Texture *playerTexture = window.loadTexture("res/gfx/hulking_knight.png");
 
+  Entity player(Vector2f(0, 0), playerTexture);
   std::vector<Entity> platform;
 
   for (int x = 0; x <= 300; x += 30) {
@@ -30,14 +33,20 @@ int main(int argc, char *argv[]) {
 
   SDL_Event event;
 
+  int lastUpdate = SDL_GetTicks();
+
   while (gameRunning) {
     while (SDL_PollEvent(&event)) {
-      if (event.type == SDL_QUIT)
+      switch (event.type) {
+      case SDL_QUIT:
         gameRunning = false;
+        break;
+      }
     }
 
     window.clear();
 
+    window.render(player);
     for (Entity &entity : platform) {
       window.render(entity, 4);
     }

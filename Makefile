@@ -4,7 +4,7 @@ LDFLAGS = -L C:/Dev/vcpkg/installed/x64-mingw-dynamic/lib -lmingw32 -lSDL2main -
 
 all: main.cpp
 
-main.cpp: 
+main.cpp: ./src/*.cpp 
 	g++ $(CXXFLAGS) ./src/*.cpp $(INCLUDES) $(LDFLAGS) -o main
 clean:
 	rm main
