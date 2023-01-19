@@ -4,3 +4,5 @@
 
 # Ignore caches made by clangd
 .cache/
+
+.vscode/
