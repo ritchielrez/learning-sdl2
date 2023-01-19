@@ -1,9 +1,0 @@
-{
-    "makefile.launchConfigurations": [
-        {
-            "cwd": "c:\\Dev\\learning-sdl2",
-            "binaryPath": "c:\\Dev\\learning-sdl2\\main",
-            "binaryArgs": []
-        }
-    ]
-}
