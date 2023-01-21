@@ -1,6 +1,7 @@
 #include "Entity.hpp"
-#include "Game.h"
+#include "Game.hpp"
 #include "Math.hpp"
+#include "Platform.hpp"
 #include "Player.hpp"
 #include "RenderWindow.hpp"
 #include <SDL2/SDL.h>
@@ -22,10 +23,10 @@ int main(int argc, char *argv[]) {
   SDL_Texture *playerTexture = window.loadTexture("res/gfx/hulking_knight.png");
 
   Player player(Vector2f(0, 0), playerTexture);
-  std::vector<Entity> platform;
+  std::vector<Platform> platform;
 
   for (int x = 0; x <= 300; x += 30) {
-    platform.push_back(Entity(Vector2f(x, 150), grassTexture));
+    platform.push_back(Platform(Vector2f(x, 150), grassTexture));
   }
 
   bool gameRunning = true;
@@ -45,14 +46,16 @@ int main(int argc, char *argv[]) {
 
     window.clear();
 
-    window.render(player, 4, frame);
-
     for (Entity &entity : platform) {
       window.render(entity, 4);
     }
 
+    window.render(player, 4, frame);
+
     window.display();
     
+    player.pos.y += GRAVITY;
+
     ++frame;
     if (frame / PLAYER_FRAME_DELAYED >= PLAYER_FRAMES) {
       frame = 0;

@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "Game.hpp"
 #include "RenderWindow.hpp"
 #include "Math.hpp"
 #include "Player.hpp"

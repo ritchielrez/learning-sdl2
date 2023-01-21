@@ -8,6 +8,7 @@
    "-std=c++14",
    "-m64",
    "./src/Entity.cpp",
+   "./src/Platform.cpp",
    "./src/Player.cpp",
    "./src/RenderWindow.cpp",
    "./src/main.cpp",
