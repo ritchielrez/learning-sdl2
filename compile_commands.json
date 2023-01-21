@@ -4,8 +4,12 @@
   "arguments": [
    "g++",
    "-g",
+   "-Wall",
    "-std=c++14",
    "-m64",
+   "./src/Entity.cpp",
+   "./src/Player.cpp",
+   "./src/RenderWindow.cpp",
    "./src/main.cpp",
    "-I",
    "C:/Dev/vcpkg/installed/x64-mingw-dynamic/include",
@@ -22,4 +26,4 @@
   ],
   "file": "./src/main.cpp"
  }
-]
+]
