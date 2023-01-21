@@ -33,12 +33,9 @@ void RenderWindow::clear() {
   SDL_RenderClear(renderer);
 }
 
-void RenderWindow::render(Player &player, int scale) {
+void RenderWindow::render(Player &player, int scale, int frame) {
   SDL_Rect src;
-  src.x = player.currentFrame.x;
-  src.y = player.currentFrame.y;
-  src.w = player.currentFrame.w;
-  src.h = player.currentFrame.h;
+  src = player.currentFrame[frame / 8];
 
   SDL_Rect dst;
   dst.x = player.pos.x * scale;

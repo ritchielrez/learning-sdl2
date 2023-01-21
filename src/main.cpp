@@ -34,9 +34,11 @@ int main(int argc, char *argv[]) {
 
   SDL_Event event;
 
-  int lastUpdate = SDL_GetTicks();
+  int playerFrame = 0;
 
   while (gameRunning) {
+    std::cout << "Frame: " << playerFrame << "\n";
+
     while (SDL_PollEvent(&event)) {
       switch (event.type) {
       case SDL_QUIT:
@@ -47,12 +49,17 @@ int main(int argc, char *argv[]) {
 
     window.clear();
 
-    window.render(player, 4);
+    window.render(player, 4, playerFrame);
     for (Entity &entity : platform) {
       window.render(entity, 4);
     }
 
     window.display();
+    
+    ++playerFrame;
+    if( playerFrame / 8 >= 4 ) {
+      playerFrame = 0;
+    }
   }
 
   SDL_Quit();
