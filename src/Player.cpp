@@ -7,23 +7,11 @@ Player::Player(Vector2f p_pos, SDL_Texture *p_texture)
     : Entity(p_pos, p_texture){
   pos = p_pos;
   texture = p_texture;
-  currentFrame[0].x = 0;
-  currentFrame[0].y = 0;
-  currentFrame[0].w = 60;
-  currentFrame[0].h = 64;
 
-  currentFrame[1].x = 64;
-  currentFrame[1].y = currentFrame[0].y;
-  currentFrame[1].w = currentFrame[0].w;
-  currentFrame[1].h = currentFrame[0].h;
-
-  currentFrame[2].x = 128;
-  currentFrame[2].y = currentFrame[0].y;
-  currentFrame[2].w = currentFrame[0].w;
-  currentFrame[2].h = currentFrame[0].h;
-  
-  currentFrame[3].x = 192;
-  currentFrame[3].y = currentFrame[0].y;
-  currentFrame[3].w = currentFrame[0].w;
-  currentFrame[3].h = currentFrame[0].h; 
+  // Note: this x position is of 2nd frame of the player, don't change it.
+  // Check the RenderWindow::render() to learn how the player gets rendered
+  currentFrame.x = 64;
+  currentFrame.y = 0;
+  currentFrame.w = 64;
+  currentFrame.h = 64;
 }

@@ -8,6 +8,6 @@ class Player : public Entity {
 public:
   Player(Vector2f p_pos, SDL_Texture *p_texture);
   Vector2f pos;
-  SDL_Rect currentFrame[4];
+  SDL_Rect currentFrame;
   SDL_Texture *texture;
 };
