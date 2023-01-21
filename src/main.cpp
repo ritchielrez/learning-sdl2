@@ -1,4 +1,5 @@
 #include "Entity.hpp"
+#include "Game.h"
 #include "Math.hpp"
 #include "Player.hpp"
 #include "RenderWindow.hpp"
@@ -6,9 +7,6 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include <vector>
-
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 720
 
 int main(int argc, char *argv[]) {
   if (SDL_Init(SDL_INIT_VIDEO > 0))
@@ -34,11 +32,9 @@ int main(int argc, char *argv[]) {
 
   SDL_Event event;
 
-  int playerFrame = 0;
+  int frame = 0;
 
   while (gameRunning) {
-    std::cout << "Frame: " << playerFrame << "\n";
-
     while (SDL_PollEvent(&event)) {
       switch (event.type) {
       case SDL_QUIT:
@@ -49,16 +45,17 @@ int main(int argc, char *argv[]) {
 
     window.clear();
 
-    window.render(player, 4, playerFrame);
+    window.render(player, 4, frame);
+
     for (Entity &entity : platform) {
       window.render(entity, 4);
     }
 
     window.display();
     
-    ++playerFrame;
-    if( playerFrame / 8 >= 4 ) {
-      playerFrame = 0;
+    ++frame;
+    if (frame / PLAYER_FRAME_DELAYED >= PLAYER_FRAMES) {
+      frame = 0;
     }
   }
 

@@ -1,5 +1,5 @@
-#include "Player.hpp"
 #include "Entity.hpp"
+#include "Player.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 

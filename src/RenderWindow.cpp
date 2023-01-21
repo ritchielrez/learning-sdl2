@@ -1,3 +1,4 @@
+#include "Game.h"
 #include "RenderWindow.hpp"
 #include "Math.hpp"
 #include "Player.hpp"
@@ -35,7 +36,7 @@ void RenderWindow::clear() {
 
 void RenderWindow::render(Player &player, int scale, int frame) {
   SDL_Rect src;
-  src.x = player.currentFrame.x * (frame / 8);
+  src.x = player.currentFrame.x * (frame / PLAYER_FRAME_DELAYED);
   src.y = player.currentFrame.y;
   src.w = player.currentFrame.w;
   src.h = player.currentFrame.h;
