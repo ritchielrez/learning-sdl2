@@ -3,5 +3,3 @@
 
 #define PLAYER_FRAMES 4
 #define PLAYER_FRAME_DELAYED 8
-
-#define GRAVITY 1

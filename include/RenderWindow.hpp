@@ -15,9 +15,10 @@ public:
   void render(Entity &entity);
   void display();
   int getRefreshRate();
+  bool checkCollision(Player a, Entity b);
   ~RenderWindow();
 
-private:
+  private:
   SDL_Window *window;
   SDL_Renderer *renderer;
 };

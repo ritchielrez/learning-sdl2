@@ -47,6 +47,8 @@ void RenderWindow::render(Player &player, int scale, int frame) {
   dst.w = src.w * scale;
   dst.h = src.h * scale;
 
+  SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+  SDL_RenderDrawRect(renderer, &dst);
   SDL_RenderCopy(renderer, player.texture, &src, &dst);
 }
 void RenderWindow::render(Vector2f pos, SDL_Texture *texture, int scale) {
@@ -76,6 +78,8 @@ void RenderWindow::render(Entity &entity, int scale) {
   dst.w = src.w * scale;
   dst.h = src.h * scale;
 
+  SDL_SetRenderDrawColor(renderer, 255, 0, 55, 55);
+  SDL_RenderDrawRect(renderer, &dst);
   SDL_RenderCopy(renderer, entity.texture, &src, &dst);
 }
 void RenderWindow::render(Entity &entity) {
@@ -102,5 +106,26 @@ int RenderWindow::getRefreshRate() {
 
   return mode.refresh_rate;
 }
+
+bool RenderWindow::checkCollision(Player a, Entity b) {
+  SDL_Rect rectA;
+  rectA.x = a.pos.x * 4;
+  rectA.y = a.pos.y * 4;
+  rectA.w = a.currentFrame.w * 4;
+  rectA.h = a.currentFrame.h * 4;
+
+  SDL_Rect rectB;
+  rectB.x = b.pos.x * 4;
+  rectB.y = b.pos.y * 4;
+  rectB.w = b.currentFrame.w * 4;
+  rectB.h = b.currentFrame.h * 4;
+
+  if(SDL_HasIntersection(&rectA, &rectB)) {
+    return true;
+  }
+
+  return false;
+}
+
 
 RenderWindow::~RenderWindow() { SDL_DestroyWindow(window); }

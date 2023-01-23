@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
   SDL_Texture *grassTexture = window.loadTexture("res/gfx/ground_grass_1.png");
   SDL_Texture *playerTexture = window.loadTexture("res/gfx/hulking_knight.png");
 
-  Player player(Vector2f(0, 0), playerTexture);
+  Player player(Vector2f(0, 100), playerTexture);
   std::vector<Platform> platform;
 
   for (int x = 0; x <= 300; x += 30) {
@@ -46,15 +46,16 @@ int main(int argc, char *argv[]) {
 
     window.clear();
 
-    for (Entity &entity : platform) {
+    for (Platform &entity : platform) {
+      if(window.checkCollision(player, entity)) { 
+        std::cout << "Collision detected\n";
+      }
       window.render(entity, 4);
     }
 
     window.render(player, 4, frame);
 
     window.display();
-    
-    player.pos.y += GRAVITY;
 
     ++frame;
     if (frame / PLAYER_FRAME_DELAYED >= PLAYER_FRAMES) {
