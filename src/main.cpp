@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
   SDL_Texture *grassTexture = window.loadTexture("res/gfx/ground_grass_1.png");
   SDL_Texture *playerTexture = window.loadTexture("res/gfx/hulking_knight.png");
 
-  Player player(Vector2f(0, 100), playerTexture);
+  Player player(Vector2f(0, 0), playerTexture);
   std::vector<Platform> platform;
 
   for (int x = 0; x <= 300; x += 30) {
@@ -34,6 +34,8 @@ int main(int argc, char *argv[]) {
   SDL_Event event;
 
   int frame = 0;
+
+  bool playerOnGround = false;
 
   while (gameRunning) {
     while (SDL_PollEvent(&event)) {
@@ -47,17 +49,25 @@ int main(int argc, char *argv[]) {
     window.clear();
 
     for (Platform &entity : platform) {
-      if(window.checkCollision(player, entity)) { 
+      if(!playerOnGround && window.checkCollision(player, entity)) { 
         std::cout << "Collision detected\n";
+        playerOnGround = true;
       }
       window.render(entity, 4);
     }
 
-    window.render(player, 4, frame);
+    window.render(player, frame, 4);
 
     window.display();
 
-    ++frame;
+    if(!playerOnGround) {
+      player.pos.y += GRAVITY;
+    }
+
+    if(playerOnGround) {
+      ++frame;
+    }
+
     if (frame / PLAYER_FRAME_DELAYED >= PLAYER_FRAMES) {
       frame = 0;
     }

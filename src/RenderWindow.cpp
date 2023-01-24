@@ -34,7 +34,7 @@ void RenderWindow::clear() {
   SDL_RenderClear(renderer);
 }
 
-void RenderWindow::render(Player &player, int scale, int frame) {
+void RenderWindow::render(Player &player, int frame, int scale) {
   SDL_Rect src;
   src.x = player.currentFrame.x * (frame / PLAYER_FRAME_DELAYED);
   src.y = player.currentFrame.y;
@@ -47,8 +47,6 @@ void RenderWindow::render(Player &player, int scale, int frame) {
   dst.w = src.w * scale;
   dst.h = src.h * scale;
 
-  SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-  SDL_RenderDrawRect(renderer, &dst);
   SDL_RenderCopy(renderer, player.texture, &src, &dst);
 }
 void RenderWindow::render(Vector2f pos, SDL_Texture *texture, int scale) {
@@ -78,8 +76,6 @@ void RenderWindow::render(Entity &entity, int scale) {
   dst.w = src.w * scale;
   dst.h = src.h * scale;
 
-  SDL_SetRenderDrawColor(renderer, 255, 0, 55, 55);
-  SDL_RenderDrawRect(renderer, &dst);
   SDL_RenderCopy(renderer, entity.texture, &src, &dst);
 }
 void RenderWindow::render(Entity &entity) {
