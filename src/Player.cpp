@@ -13,5 +13,11 @@ Player::Player(Vector2f p_pos, SDL_Texture *p_texture)
   currentFrame.x = 64;
   currentFrame.y = 0;
   currentFrame.w = 64;
-  currentFrame.h = 50;
+  currentFrame.h = 64;
+
+  // These x and y coordinates are offsets to the player's actual x and y position
+  collisionBody.x = 18;
+  collisionBody.y = 2;
+  collisionBody.w = currentFrame.w - 32;
+  collisionBody.h = currentFrame.h - 16;
 }

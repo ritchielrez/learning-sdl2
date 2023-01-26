@@ -49,14 +49,14 @@ int main(int argc, char *argv[]) {
     window.clear();
 
     for (Platform &entity : platform) {
-      if(!playerOnGround && window.checkCollision(player, entity)) { 
+      if(!playerOnGround && window.checkCollision(player, entity, ENTITY_SCALE)) { 
         std::cout << "Collision detected\n";
         playerOnGround = true;
       }
-      window.render(entity, 4);
+      window.render(entity, ENTITY_SCALE);
     }
 
-    window.render(player, frame, 4);
+    window.render(player, frame, ENTITY_SCALE);
 
     window.display();
 

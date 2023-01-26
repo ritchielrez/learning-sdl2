@@ -49,6 +49,21 @@ void RenderWindow::render(Player &player, int frame, int scale) {
 
   SDL_RenderCopy(renderer, player.texture, &src, &dst);
 }
+void RenderWindow::render(Player &player, int scale) {
+  SDL_Rect src;
+  src.x = player.currentFrame.x;
+  src.y = player.currentFrame.y;
+  src.w = player.currentFrame.w;
+  src.h = player.currentFrame.h;
+
+  SDL_Rect dst;
+  dst.x = player.pos.x * scale;
+  dst.y = player.pos.y * scale;
+  dst.w = src.w * scale;
+  dst.h = src.h * scale;
+
+  SDL_RenderCopy(renderer, player.texture, &src, &dst);
+}
 void RenderWindow::render(Vector2f pos, SDL_Texture *texture, int scale) {
   SDL_Rect src;
   src.x = 0;
@@ -103,18 +118,18 @@ int RenderWindow::getRefreshRate() {
   return mode.refresh_rate;
 }
 
-bool RenderWindow::checkCollision(Player a, Entity b) {
+bool RenderWindow::checkCollision(Player &a, Entity &b, int scale) {
   SDL_Rect rectA;
-  rectA.x = a.pos.x * 4;
-  rectA.y = a.pos.y * 4;
-  rectA.w = a.currentFrame.w * 4;
-  rectA.h = a.currentFrame.h * 4;
+  rectA.x = (a.pos.x + a.collisionBody.x) * scale;
+  rectA.y = (a.pos.y + a.collisionBody.y) * scale;
+  rectA.w = a.collisionBody.w * scale;
+  rectA.h = a.collisionBody.h * scale;
 
   SDL_Rect rectB;
-  rectB.x = b.pos.x * 4;
-  rectB.y = b.pos.y * 4;
-  rectB.w = b.currentFrame.w * 4;
-  rectB.h = b.currentFrame.h * 4;
+  rectB.x = b.pos.x * scale;
+  rectB.y = b.pos.y * scale;
+  rectB.w = b.currentFrame.w * scale;
+  rectB.h = b.currentFrame.h * scale;
 
   if(SDL_HasIntersection(&rectA, &rectB)) {
     return true;

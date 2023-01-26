@@ -10,12 +10,13 @@ public:
   SDL_Texture *loadTexture(const char *filePath);
   void clear();
   void render(Player &player, int frame, int scale);
+  void render(Player &player, int scale);
   void render(Vector2f pos, SDL_Texture *texture, int scale);
   void render(Entity &entity, int scale);
   void render(Entity &entity);
   void display();
   int getRefreshRate();
-  bool checkCollision(Player a, Entity b);
+  bool checkCollision(Player &a, Entity &b, int scale);
   ~RenderWindow();
 
   private:
