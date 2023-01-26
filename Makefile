@@ -6,6 +6,6 @@ SRC=$(wildcard ./src/*.cpp)
 all: debug
 
 debug: $(SRC)
-	ccache g++ $(CXXFLAGS) $(SRC) $(INCLUDES) $(LDFLAGS) -o main
+	g++ $(CXXFLAGS) $(SRC) $(INCLUDES) $(LDFLAGS) -o main
 clean:
 	rm main
