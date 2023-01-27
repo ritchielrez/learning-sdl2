@@ -1,4 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
+set(CMAKE_C_COMPILER "clang")
+set(CMAKE_CXX_COMPILER "clang++")
 set(CXX_STANDARD 14)
 set(CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -m64")
