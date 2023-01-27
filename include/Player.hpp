@@ -12,4 +12,5 @@ public:
   SDL_Rect currentFrame;
   SDL_Rect collisionBody;
   SDL_Texture *texture;
+  void move();
 };

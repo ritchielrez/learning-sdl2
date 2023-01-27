@@ -19,8 +19,8 @@ int main(int argc, char *argv[]) {
 
   RenderWindow window("Game v1.0", SCREEN_WIDTH, SCREEN_HEIGHT);
 
-  SDL_Texture *grassTexture = window.loadTexture("../res/gfx/ground_grass_1.png");
-  SDL_Texture *playerTexture = window.loadTexture("../res/gfx/hulking_knight.png");
+  SDL_Texture *grassTexture = window.loadTexture("res/gfx/ground_grass_1.png");
+  SDL_Texture *playerTexture = window.loadTexture("res/gfx/hulking_knight.png");
 
   Player player(Vector2f(0, 0), playerTexture);
   std::vector<Platform> platform;
@@ -62,6 +62,9 @@ int main(int argc, char *argv[]) {
 
     if(!playerOnGround) {
       player.pos.y += GRAVITY;
+    }
+    else {
+      player.move();
     }
 
     if(playerOnGround) {
