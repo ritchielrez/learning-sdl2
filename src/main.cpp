@@ -60,11 +60,14 @@ int main(int argc, char *argv[]) {
     if(!playerOnGround) {
       player.pos.y += player.gravityForce;
     }
-    else {
-      player.move();
-    }
 
     if(playerOnGround) {
+      if(player.pos.x + player.currentFrame.w < 400) {
+        player.move();
+      }
+      else {
+        player.pos.x = -40;
+      }
       ++frame;
     }
 
