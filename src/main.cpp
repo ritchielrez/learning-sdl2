@@ -30,11 +30,8 @@ int main(int argc, char *argv[]) {
   }
 
   bool gameRunning = true;
-
   SDL_Event event;
-
   int frame = 0;
-
   bool playerOnGround = false;
 
   while (gameRunning) {
@@ -61,7 +58,7 @@ int main(int argc, char *argv[]) {
     window.display();
 
     if(!playerOnGround) {
-      player.pos.y += GRAVITY;
+      player.pos.y += player.gravityForce;
     }
     else {
       player.move();

@@ -9,8 +9,10 @@ Player::Player(Vector2f p_pos, SDL_Texture *p_texture)
   pos = p_pos;
   texture = p_texture;
 
+  gravityForce = 4;
+
   vel.x = 2;
-  vel.y = GRAVITY * 1.5;
+  vel.y = gravityForce * 1.5;
 
   // Note: this x position is of 2nd frame of the player, don't change it.
   // Check the RenderWindow::render() to learn how the player gets rendered

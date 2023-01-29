@@ -9,6 +9,7 @@ public:
   Player(Vector2f p_pos, SDL_Texture *p_texture);
   Vector2f pos;
   Vector2f vel;
+  double gravityForce;
   SDL_Rect currentFrame;
   SDL_Rect collisionBody;
   SDL_Texture *texture;
