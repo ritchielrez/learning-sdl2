@@ -24,15 +24,16 @@ int main(int argc, char *argv[]) {
 
   Player player(Vector2f(0, 0), playerTexture);
   std::vector<Platform> platform;
+  std::vector<Platform> platformCollidedList;
 
   for (int x = 0; x <= 300; x += 30) {
     platform.push_back(Platform(Vector2f(x, 150), grassTexture));
   }
 
   bool gameRunning = true;
+  bool playerOnGround = false;
   SDL_Event event;
   int frame = 0;
-  bool playerOnGround = false;
 
   while (gameRunning) {
     while (SDL_PollEvent(&event)) {
@@ -46,9 +47,8 @@ int main(int argc, char *argv[]) {
     window.clear();
 
     for (Platform &entity : platform) {
-      if(!playerOnGround && window.checkCollision(player, entity, ENTITY_SCALE)) { 
-        std::cout << "Collision detected\n";
-        playerOnGround = true;
+      if(window.checkCollision(player, entity, ENTITY_SCALE)) { 
+        platformCollidedList.push_back(entity);
       }
       window.render(entity, ENTITY_SCALE);
     }
@@ -57,19 +57,23 @@ int main(int argc, char *argv[]) {
 
     window.display();
 
-    if(!playerOnGround) {
-      player.pos.y += player.gravityForce;
-    }
+    if(platformCollidedList.size() > 0) playerOnGround = true;
+    else { playerOnGround = false; }
 
     if(playerOnGround) {
-      if(player.pos.x + player.currentFrame.w < 400) {
-        player.move();
-      }
-      else {
-        player.pos.x = -40;
-      }
+      player.move();
       ++frame;
     }
+    else {
+      if(player.pos.x + player.currentFrame.w >= SCREEN_WIDTH / ENTITY_SCALE) {
+        player.pos.x = -40;
+      }
+      else {
+        player.pos.y += player.gravityForce;
+      }
+    }
+
+    platformCollidedList.clear();
 
     if (frame / PLAYER_FRAME_DELAYED >= PLAYER_FRAMES) {
       frame = 0;
