@@ -1,6 +1,7 @@
 #pragma once
 #include "Entity.hpp"
 #include "Player.hpp"
+#include "Tile.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
@@ -11,12 +12,13 @@ public:
   void clear();
   void render(Player &player, int frame, int scale);
   void render(Player &player, int scale);
+  void render(Tile &tile, int scale);
   void render(Vector2f pos, SDL_Texture *texture, int scale);
   void render(Entity &entity, int scale);
   void render(Entity &entity);
   void display();
   int getRefreshRate();
-  bool checkCollision(Player &a, Entity &b, int scale);
+  bool checkCollision(Player &a, Tile &b, int scale);
   ~RenderWindow();
 
   private:

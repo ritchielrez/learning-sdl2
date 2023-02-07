@@ -2,6 +2,7 @@
 #include "RenderWindow.hpp"
 #include "Math.hpp"
 #include "Player.hpp"
+#include "Tile.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
@@ -64,6 +65,21 @@ void RenderWindow::render(Player &player, int scale) {
 
   SDL_RenderCopy(renderer, player.texture, &src, &dst);
 }
+void RenderWindow::render(Tile &tile, int scale) {
+  SDL_Rect src;
+  src.x = tile.tile.x * scale;
+  src.y = tile.tile.y * scale;
+  src.w = tile.tile.w * scale;
+  src.h = tile.tile.h * scale;
+
+  SDL_Rect dst;
+  dst.x = tile.pos.x * scale;
+  dst.y = tile.pos.y * scale;
+  dst.w = src.w;
+  dst.h = src.h;
+
+  SDL_RenderCopy(renderer, tile.texture, &src, &dst);
+}
 void RenderWindow::render(Vector2f pos, SDL_Texture *texture, int scale) {
   SDL_Rect src;
   src.x = 0;
@@ -118,7 +134,7 @@ int RenderWindow::getRefreshRate() {
   return mode.refresh_rate;
 }
 
-bool RenderWindow::checkCollision(Player &a, Entity &b, int scale) {
+bool RenderWindow::checkCollision(Player &a, Tile &b, int scale) {
   SDL_Rect rectA;
   rectA.x = (a.pos.x + a.collisionBody.x) * scale;
   rectA.y = (a.pos.y + a.collisionBody.y) * scale;
@@ -128,8 +144,8 @@ bool RenderWindow::checkCollision(Player &a, Entity &b, int scale) {
   SDL_Rect rectB;
   rectB.x = b.pos.x * scale;
   rectB.y = b.pos.y * scale;
-  rectB.w = b.currentFrame.w * scale;
-  rectB.h = b.currentFrame.h * scale;
+  rectB.w = b.tile.w * scale;
+  rectB.h = b.tile.h * scale;
 
   if(SDL_HasIntersection(&rectA, &rectB)) {
     return true;

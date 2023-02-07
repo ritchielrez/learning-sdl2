@@ -1,27 +1,32 @@
 [
 {
   "directory": "C:/Dev/learning-sdl2/build",
-  "command": "C:\\Users\\strange.ritchiel\\scoop\\apps\\mingw-nuwen\\current\\bin\\g++.exe -IC:/Dev/learning-sdl2/include -isystem C:/Dev/vcpkg/installed/x64-mingw-dynamic/include -isystem C:/Dev/vcpkg/installed/x64-mingw-dynamic/include/SDL2  -g -Wall -m64 -g -o CMakeFiles\\main.dir\\src\\Entity.cpp.obj -c C:\\Dev\\learning-sdl2\\src\\Entity.cpp",
-  "file": "C:\\Dev\\learning-sdl2\\src\\Entity.cpp"
+  "command": "C:\\Users\\strange.ritchiel\\scoop\\apps\\mingw-winlibs\\current\\bin\\g++.exe  @CMakeFiles/main.dir/includes_CXX.rsp  -g -Wall -m64 -g -o CMakeFiles\\main.dir\\src\\Entity.cpp.obj -c C:\\Dev\\learning-sdl2\\src\\Entity.cpp",
+  "file": "C:/Dev/learning-sdl2/src/Entity.cpp"
 },
 {
   "directory": "C:/Dev/learning-sdl2/build",
-  "command": "C:\\Users\\strange.ritchiel\\scoop\\apps\\mingw-nuwen\\current\\bin\\g++.exe -IC:/Dev/learning-sdl2/include -isystem C:/Dev/vcpkg/installed/x64-mingw-dynamic/include -isystem C:/Dev/vcpkg/installed/x64-mingw-dynamic/include/SDL2  -g -Wall -m64 -g -o CMakeFiles\\main.dir\\src\\Platform.cpp.obj -c C:\\Dev\\learning-sdl2\\src\\Platform.cpp",
-  "file": "C:\\Dev\\learning-sdl2\\src\\Platform.cpp"
+  "command": "C:\\Users\\strange.ritchiel\\scoop\\apps\\mingw-winlibs\\current\\bin\\g++.exe  @CMakeFiles/main.dir/includes_CXX.rsp  -g -Wall -m64 -g -o CMakeFiles\\main.dir\\src\\Platform.cpp.obj -c C:\\Dev\\learning-sdl2\\src\\Platform.cpp",
+  "file": "C:/Dev/learning-sdl2/src/Platform.cpp"
 },
 {
   "directory": "C:/Dev/learning-sdl2/build",
-  "command": "C:\\Users\\strange.ritchiel\\scoop\\apps\\mingw-nuwen\\current\\bin\\g++.exe -IC:/Dev/learning-sdl2/include -isystem C:/Dev/vcpkg/installed/x64-mingw-dynamic/include -isystem C:/Dev/vcpkg/installed/x64-mingw-dynamic/include/SDL2  -g -Wall -m64 -g -o CMakeFiles\\main.dir\\src\\Player.cpp.obj -c C:\\Dev\\learning-sdl2\\src\\Player.cpp",
-  "file": "C:\\Dev\\learning-sdl2\\src\\Player.cpp"
+  "command": "C:\\Users\\strange.ritchiel\\scoop\\apps\\mingw-winlibs\\current\\bin\\g++.exe  @CMakeFiles/main.dir/includes_CXX.rsp  -g -Wall -m64 -g -o CMakeFiles\\main.dir\\src\\Player.cpp.obj -c C:\\Dev\\learning-sdl2\\src\\Player.cpp",
+  "file": "C:/Dev/learning-sdl2/src/Player.cpp"
 },
 {
   "directory": "C:/Dev/learning-sdl2/build",
-  "command": "C:\\Users\\strange.ritchiel\\scoop\\apps\\mingw-nuwen\\current\\bin\\g++.exe -IC:/Dev/learning-sdl2/include -isystem C:/Dev/vcpkg/installed/x64-mingw-dynamic/include -isystem C:/Dev/vcpkg/installed/x64-mingw-dynamic/include/SDL2  -g -Wall -m64 -g -o CMakeFiles\\main.dir\\src\\RenderWindow.cpp.obj -c C:\\Dev\\learning-sdl2\\src\\RenderWindow.cpp",
-  "file": "C:\\Dev\\learning-sdl2\\src\\RenderWindow.cpp"
+  "command": "C:\\Users\\strange.ritchiel\\scoop\\apps\\mingw-winlibs\\current\\bin\\g++.exe  @CMakeFiles/main.dir/includes_CXX.rsp  -g -Wall -m64 -g -o CMakeFiles\\main.dir\\src\\RenderWindow.cpp.obj -c C:\\Dev\\learning-sdl2\\src\\RenderWindow.cpp",
+  "file": "C:/Dev/learning-sdl2/src/RenderWindow.cpp"
 },
 {
   "directory": "C:/Dev/learning-sdl2/build",
-  "command": "C:\\Users\\strange.ritchiel\\scoop\\apps\\mingw-nuwen\\current\\bin\\g++.exe -IC:/Dev/learning-sdl2/include -isystem C:/Dev/vcpkg/installed/x64-mingw-dynamic/include -isystem C:/Dev/vcpkg/installed/x64-mingw-dynamic/include/SDL2  -g -Wall -m64 -g -o CMakeFiles\\main.dir\\src\\main.cpp.obj -c C:\\Dev\\learning-sdl2\\src\\main.cpp",
-  "file": "C:\\Dev\\learning-sdl2\\src\\main.cpp"
+  "command": "C:\\Users\\strange.ritchiel\\scoop\\apps\\mingw-winlibs\\current\\bin\\g++.exe  @CMakeFiles/main.dir/includes_CXX.rsp  -g -Wall -m64 -g -o CMakeFiles\\main.dir\\src\\Tile.cpp.obj -c C:\\Dev\\learning-sdl2\\src\\Tile.cpp",
+  "file": "C:/Dev/learning-sdl2/src/Tile.cpp"
+},
+{
+  "directory": "C:/Dev/learning-sdl2/build",
+  "command": "C:\\Users\\strange.ritchiel\\scoop\\apps\\mingw-winlibs\\current\\bin\\g++.exe  @CMakeFiles/main.dir/includes_CXX.rsp  -g -Wall -m64 -g -o CMakeFiles\\main.dir\\src\\main.cpp.obj -c C:\\Dev\\learning-sdl2\\src\\main.cpp",
+  "file": "C:/Dev/learning-sdl2/src/main.cpp"
 }
 ]
