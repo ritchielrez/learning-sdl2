@@ -8,7 +8,6 @@ else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -m64")
 endif()
 
-
 # Comment out this line if you're using default triplet for vcpkg
 # set(VCPKG_TARGET_TRIPLET x64-mingw-dynamic)
 
