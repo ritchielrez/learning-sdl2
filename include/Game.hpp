@@ -1,6 +1,9 @@
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
 
+#define LEVEL_WIDTH 1280
+#define LEVLEL_HEIGHT 720
+
 #define ENTITY_SCALE 4
 
 #define PLAYER_FRAMES 4
