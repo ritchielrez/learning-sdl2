@@ -9,7 +9,7 @@ Player::Player(Vector2f p_pos, SDL_Texture *p_texture)
   pos = p_pos;
   texture = p_texture;
 
-  gravityForce = 4;
+  gravityForce = 5;
 
   vel.x = 2;
   vel.y = gravityForce * 1.5;

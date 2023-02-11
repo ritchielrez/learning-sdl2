@@ -16,9 +16,10 @@ public:
   void render(Vector2f pos, SDL_Texture *texture, int scale);
   void render(Entity &entity, int scale);
   void render(Entity &entity);
+  void setCamera(SDL_Rect &camera);
   void display();
   int getRefreshRate();
-  bool checkCollision(Player &a, Tile &b, int scale);
+  bool checkCollision(Player &a, Tile &b, int aScale, int bScale);
   ~RenderWindow();
 
   private:

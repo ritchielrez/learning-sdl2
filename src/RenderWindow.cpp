@@ -42,6 +42,17 @@ void RenderWindow::render(Player &player, int frame, int scale) {
   src.w = player.currentFrame.w;
   src.h = player.currentFrame.h;
 
+  #if DEBUG
+  SDL_Rect rectA;
+  rectA.x = (player.pos.x + player.collisionBody.x) * scale;
+  rectA.y = (player.pos.y + player.collisionBody.y) * scale;
+  rectA.w = player.collisionBody.w * scale;
+  rectA.h = player.collisionBody.h * scale;
+
+  SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+  SDL_RenderDrawRect(renderer, &rectA);
+  #endif
+
   SDL_Rect dst;
   dst.x = player.pos.x * scale;
   dst.y = player.pos.y * scale;
@@ -79,6 +90,17 @@ void RenderWindow::render(Tile &tile, int scale) {
   dst.h = src.h;
 
   SDL_RenderCopy(renderer, tile.texture, &src, &dst);
+
+  #if DEBUG 
+  SDL_Rect rectA;
+  rectA.x = tile.pos.x * scale;
+  rectA.y = tile.pos.y * scale;
+  rectA.w = tile.tile.w * scale;
+  rectA.h = tile.tile.h * scale;
+
+  SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+  SDL_RenderDrawRect(renderer, &rectA);
+  #endif
 }
 void RenderWindow::render(Vector2f pos, SDL_Texture *texture, int scale) {
   SDL_Rect src;
@@ -134,18 +156,18 @@ int RenderWindow::getRefreshRate() {
   return mode.refresh_rate;
 }
 
-bool RenderWindow::checkCollision(Player &a, Tile &b, int scale) {
+bool RenderWindow::checkCollision(Player &a, Tile &b, int aScale, int bScale) {
   SDL_Rect rectA;
-  rectA.x = (a.pos.x + a.collisionBody.x) * scale;
-  rectA.y = (a.pos.y + a.collisionBody.y) * scale;
-  rectA.w = a.collisionBody.w * scale;
-  rectA.h = a.collisionBody.h * scale;
+  rectA.x = (a.pos.x + a.collisionBody.x) * aScale;
+  rectA.y = (a.pos.y + a.collisionBody.y) * aScale;
+  rectA.w = a.collisionBody.w * aScale;
+  rectA.h = a.collisionBody.h * aScale;
 
   SDL_Rect rectB;
-  rectB.x = b.pos.x * scale;
-  rectB.y = b.pos.y * scale;
-  rectB.w = b.tile.w * scale;
-  rectB.h = b.tile.h * scale;
+  rectB.x = b.pos.x * bScale;
+  rectB.y = b.pos.y * bScale;
+  rectB.w = b.tile.w * bScale;
+  rectB.h = b.tile.h * bScale;
 
   if(SDL_HasIntersection(&rectA, &rectB)) {
     return true;

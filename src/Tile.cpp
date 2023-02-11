@@ -11,3 +11,7 @@ Tile::Tile(Vector2f p_pos, SDL_Texture *p_texture)
     tile.w = TILE_WIDTH;
     tile.h = TILE_HEIGHT;
 }
+
+void Tile::update() {
+    
+}

@@ -1,6 +1,7 @@
 #include "Entity.hpp"
 #include "Game.hpp"
 #include "Math.hpp"
+#include "Map.hpp"
 #include "Player.hpp"
 #include "RenderWindow.hpp"
 #include "Tile.hpp"
@@ -23,15 +24,9 @@ int main(int argc, char *argv[]) {
   SDL_Texture *playerTexture = window.loadTexture("res/gfx/hulking_knight.png");
 
   Player player(Vector2f(0, 0), playerTexture);
-  std::vector<Tile> tiles;
-  std::vector<Tile> tilesCollidedList;
-
-  for (int x = 0; x <= 300; x += TILE_WIDTH) {
-    tiles.push_back(Tile(Vector2f(x, 150), grassTexture));
-  }
+  Map map(grassTexture);
 
   bool gameRunning = true;
-  bool playerOnGround = false;
   SDL_Event event;
   int frame = 0;
 
@@ -46,34 +41,26 @@ int main(int argc, char *argv[]) {
 
     window.clear();
 
-    for (Tile &tile : tiles) {
-      if(window.checkCollision(player, tile, ENTITY_SCALE)) { 
-        tilesCollidedList.push_back(tile);
+    for (Tile &tile : map.tiles) {
+      if(window.checkCollision(player, tile, PLAYER_SCALE, ENTITY_SCALE)) { 
+        map.tilesCollidedList.push_back(tile);
       }
       window.render(tile, ENTITY_SCALE);
     }
 
-    window.render(player, frame, ENTITY_SCALE);
+    window.render(player, frame, PLAYER_SCALE);
 
     window.display();
 
-    if(tilesCollidedList.size() > 0) playerOnGround = true;
-    else { playerOnGround = false; }
-
-    if(playerOnGround) {
+    if(map.tilesCollidedList.size() > 0) {
       player.move();
       ++frame;
     }
     else {
-      if(player.pos.x + player.currentFrame.w >= SCREEN_WIDTH / ENTITY_SCALE) {
-        player.pos.x = -40;
-      }
-      else {
-        player.pos.y += player.gravityForce;
-      }
+      player.pos.y += player.gravityForce;
     }
 
-    tilesCollidedList.clear();
+    map.tilesCollidedList.clear();
 
     if (frame / PLAYER_FRAME_DELAYED >= PLAYER_FRAMES) {
       frame = 0;
