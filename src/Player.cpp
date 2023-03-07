@@ -11,7 +11,7 @@ Player::Player(Vector2f p_pos, SDL_Texture *p_texture)
 
   gravityForce = 5;
 
-  vel.x = 2;
+  vel.x = 1;
   vel.y = gravityForce * 1.5;
 
   // Note: this x position is of 2nd frame of the player, don't change it.
@@ -30,4 +30,21 @@ Player::Player(Vector2f p_pos, SDL_Texture *p_texture)
 
 void Player::move() {
   pos.x += vel.x;
+}
+
+void Player::setCamera() {
+  #if DEBUG
+  Game::camera.x = pos.x - SCREEN_WIDTH / 2;
+  Game::camera.y = pos.y - SCREEN_HEIGHT / 2;
+
+  if (Game::camera.x < 0)
+    Game::camera.x = 0;
+  if (Game::camera.y < 0)
+    Game::camera.y = 0;
+  if (Game::camera.x > Game::camera.w)
+    Game::camera.x = Game::camera.w;
+  
+  std::cout << "Camera x: " << Game::camera.x << "\n";
+  std::cout << "Camera x: " << Game::camera.x << "\n";
+  #endif
 }

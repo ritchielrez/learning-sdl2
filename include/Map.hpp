@@ -8,6 +8,7 @@
 class Map {
 public:
     Map(SDL_Texture *texture);
+    void reset(SDL_Texture *texture);
     void update();
 
     std::vector<Tile> tiles;

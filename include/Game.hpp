@@ -1,3 +1,7 @@
+#pragma once
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
 
@@ -12,6 +16,11 @@
 
 #define TILE_WIDTH 32
 #define TILE_HEIGHT 32
-#define TILES_TOTAL ((SCREEN_WIDTH - 20) / ENTITY_SCALE) / TILE_WIDTH
+#define TILES_TOTAL 11
 
 #define DEBUG 0
+
+class Game {
+public:
+    static SDL_Rect camera;
+};

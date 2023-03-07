@@ -41,10 +41,13 @@ int main(int argc, char *argv[]) {
 
     window.clear();
 
+    //player.setCamera();
+    //map.update();
+
     for (Tile &tile : map.tiles) {
-      if(window.checkCollision(player, tile, PLAYER_SCALE, ENTITY_SCALE)) { 
-        map.tilesCollidedList.push_back(tile);
-      }
+      // if(window.checkCollision(player, tile, PLAYER_SCALE, ENTITY_SCALE)) { 
+      //   map.tilesCollidedList.push_back(tile);
+      // }
       window.render(tile, ENTITY_SCALE);
     }
 
@@ -52,15 +55,18 @@ int main(int argc, char *argv[]) {
 
     window.display();
 
-    if(map.tilesCollidedList.size() > 0) {
-      player.move();
-      ++frame;
-    }
-    else {
-      player.pos.y += player.gravityForce;
-    }
+    player.move();
+    ++frame;
+    // if(map.tilesCollidedList.size() > 0) {
+    //   player.move();
+    //   ++frame;
+    // }
+    // else {
+    //   player.pos.y += player.gravityForce;
+    // }
 
     map.tilesCollidedList.clear();
+    map.update();
 
     if (frame / PLAYER_FRAME_DELAYED >= PLAYER_FRAMES) {
       frame = 0;
