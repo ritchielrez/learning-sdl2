@@ -3,6 +3,7 @@
 ### Description
 I love programming, specially in lower level languages like *C/C++*. But when I started learning the [Godot game engine](https://godotengine.org),
 I had to use *GDScript*. I lost my motivation back then, and didn't try to make a game again.  
+
 Late last year though, I discovered a channel called **PolyMars**. He uses different libraries to make small games for game jams. To make things harder, 
 he picks up a new library every game jam, learns it and uses to make his game that he submites to a specific jam. I saw him making a platformer game using 
 the **SDL2** library. I got really interested, and after some research I learned more about **SDL2**. Following the [**codergopher**'s SDL2 tutorial](https://www.youtube.com/watch?v=KsG6dJlLBDw&list=PL2RPjWnJduNmXHRYwdtublIPdlqocBoLS),
