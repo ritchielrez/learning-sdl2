@@ -8,7 +8,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
-#include <vector>
 
 int main(int argc, char *argv[]) {
   if (SDL_Init(SDL_INIT_VIDEO > 0))
@@ -41,13 +40,10 @@ int main(int argc, char *argv[]) {
 
     window.clear();
 
-    //player.setCamera();
-    //map.update();
-
     for (Tile &tile : map.tiles) {
-      // if(window.checkCollision(player, tile, PLAYER_SCALE, ENTITY_SCALE)) { 
-      //   map.tilesCollidedList.push_back(tile);
-      // }
+       if(window.checkCollision(player, tile, PLAYER_SCALE, ENTITY_SCALE)) { 
+         map.tilesCollidedList.push_back(tile);
+       }
       window.render(tile, ENTITY_SCALE);
     }
 
@@ -57,13 +53,13 @@ int main(int argc, char *argv[]) {
 
     player.move();
     ++frame;
-    // if(map.tilesCollidedList.size() > 0) {
-    //   player.move();
-    //   ++frame;
-    // }
-    // else {
-    //   player.pos.y += player.gravityForce;
-    // }
+    if(map.tilesCollidedList.size() > 0) {
+       player.move();
+       ++frame;
+     }
+     else {
+       player.pos.y += player.gravityForce;
+     } 
 
     map.tilesCollidedList.clear();
     map.update();

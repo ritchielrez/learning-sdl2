@@ -19,8 +19,3 @@
 #define TILES_TOTAL 11
 
 #define DEBUG 0
-
-class Game {
-public:
-    static SDL_Rect camera;
-};
