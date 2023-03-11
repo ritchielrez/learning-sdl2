@@ -8,7 +8,7 @@ he picks up a new library every game jam, learns it and uses to make his game th
 the **SDL2** library. I got really interested, and after some research I learned more about **SDL2**. Following the [**codergopher**'s SDL2 tutorial](https://www.youtube.com/watch?v=KsG6dJlLBDw&list=PL2RPjWnJduNmXHRYwdtublIPdlqocBoLS),
 I started this project.  
 
-The `main` branch follows the main tutorial until part 8. `latest` branch continues **codergopher's** unfinished game.
+The `main` branch follows the main tutorial until part 8, `latest` branch continues **codergopher's** unfinished game and `rewrite` branch contains newly structered project code base.
 
 ### How to run the project
 The project currently depends on `SDL2` and `SDL2_image`. This has been only tested on **Windows**, but it's possible to port it to other platforms.
