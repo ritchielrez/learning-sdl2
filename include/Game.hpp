@@ -5,8 +5,9 @@
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
 
+// TODO: unused constants
 #define LEVEL_WIDTH 1280
-#define LEVLEL_HEIGHT 720
+#define LEVEL_HEIGHT 720
 
 #define ENTITY_SCALE 4
 #define PLAYER_SCALE 3
@@ -19,3 +20,13 @@
 #define TILES_TOTAL 11
 
 #define DEBUG 0
+
+class Game {
+public: 
+	int init(const char* title, int width, int height);
+	void gameLoop();
+	~Game();
+private:
+	SDL_Window *mWindow;
+	SDL_Renderer *mRenderer;
+};
