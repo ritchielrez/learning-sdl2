@@ -22,11 +22,12 @@
 #define DEBUG 0
 
 class Game {
+private:
+	SDL_Window *mWindow;
+	SDL_Renderer *mRenderer;
+
 public: 
 	int init(const char* title, int width, int height);
 	void gameLoop();
 	~Game();
-private:
-	SDL_Window *mWindow;
-	SDL_Renderer *mRenderer;
 };

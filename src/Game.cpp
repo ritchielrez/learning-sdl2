@@ -2,6 +2,15 @@
 #include <iostream>
 
 int Game::init(const char* title, int width, int height) {
+    if (SDL_Init(SDL_INIT_VIDEO > 0)) {
+        std::cout << "SDL failed to init, Error: " << SDL_GetError << "\n";
+        return 1;
+    }
+
+    if (!IMG_Init(IMG_INIT_PNG)) {
+        std::cout << "SDL_Image failed to init, Error: " << SDL_GetError << "\n";
+    }
+
 	mWindow = NULL; 
 	mRenderer = NULL;
 
@@ -15,7 +24,7 @@ int Game::init(const char* title, int width, int height) {
 	mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
 	if (!mRenderer) {
-		std::cout << "Rendere failed to init, Error: " << SDL_GetError << "\n";
+		std::cout << "Renderer failed to init, Error: " << SDL_GetError << "\n";
 		return 1;
 	}
 	 
