@@ -24,12 +24,17 @@
 
 class Game {
 private:
-    std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)> mWindow;
-	std::unique_ptr<SDL_Renderer, decltype(&SDL_DestroyRenderer)> mRenderer;
+	std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)> mWindow = { NULL, SDL_DestroyWindow };
+	std::unique_ptr<SDL_Renderer, decltype(&SDL_DestroyRenderer)> mRenderer = { NULL, SDL_DestroyRenderer };
 
 public: 
-	Game();
 	~Game();
-	int init(const char* title, int width, int height);
+	void init(const char* title, uint32_t width, uint32_t height);
 	void gameLoop();
+	void handleEvents();
+
+	const uint32_t windowWidth = 1280;
+	const uint32_t windowHeight = 720;
+	bool gameRunning = true;
+	SDL_Event event;
 };
