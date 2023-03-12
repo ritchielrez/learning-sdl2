@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <memory>
 
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
@@ -23,11 +24,12 @@
 
 class Game {
 private:
-	SDL_Window *mWindow;
-	SDL_Renderer *mRenderer;
+    std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)> mWindow;
+	std::unique_ptr<SDL_Renderer, decltype(&SDL_DestroyRenderer)> mRenderer;
 
 public: 
+	Game();
+	~Game();
 	int init(const char* title, int width, int height);
 	void gameLoop();
-	~Game();
 };
