@@ -22,16 +22,25 @@
 
 #define DEBUG 0
 
+struct SDLDelete {
+	void operator()(SDL_Window* p);
+	void operator()(SDL_Renderer* p);
+	void operator()(SDL_Texture* p);
+};
+
 class Game {
 private:
-	std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)> mWindow = { NULL, SDL_DestroyWindow };
-	std::unique_ptr<SDL_Renderer, decltype(&SDL_DestroyRenderer)> mRenderer = { NULL, SDL_DestroyRenderer };
+	std::unique_ptr<SDL_Window, SDLDelete> mWindow = NULL;
+	std::unique_ptr<SDL_Renderer, SDLDelete> mRenderer = NULL;
 
 public: 
 	~Game();
 	void init(const char* title, uint32_t width, uint32_t height);
 	void gameLoop();
 	void handleEvents();
+	std::unique_ptr<SDL_Texture, SDLDelete> loadTexture(const char *filepath);
+	void render();
+	void update();
 
 	const uint32_t windowWidth = 1280;
 	const uint32_t windowHeight = 720;
