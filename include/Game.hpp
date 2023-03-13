@@ -1,4 +1,5 @@
 #pragma once
+#include "GameObject.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <memory>
@@ -22,28 +23,24 @@
 
 #define DEBUG 0
 
-struct SDLDelete {
-	void operator()(SDL_Window* p);
-	void operator()(SDL_Renderer* p);
-	void operator()(SDL_Texture* p);
-};
-
 class Game {
 private:
-	std::unique_ptr<SDL_Window, SDLDelete> mWindow = NULL;
-	std::unique_ptr<SDL_Renderer, SDLDelete> mRenderer = NULL;
+	SDL_Window *mWindow = NULL;
+	SDL_Renderer *mRenderer = NULL;
 
-public: 
-	~Game();
-	void init(const char* title, uint32_t width, uint32_t height);
-	void gameLoop();
-	void handleEvents();
-	std::unique_ptr<SDL_Texture, SDLDelete> loadTexture(const char *filepath);
-	void render();
-	void update();
-
+public:
 	const uint32_t windowWidth = 1280;
 	const uint32_t windowHeight = 720;
 	bool gameRunning = true;
 	SDL_Event event;
+	
+	std::unique_ptr<GameObject> grass;
+
+	~Game();
+	void init(const char* title, uint32_t width, uint32_t height);
+	void gameLoop();
+	void handleEvents();
+	SDL_Texture* loadTexture(const char *filepath);
+	void render();
+	void update();
 };
