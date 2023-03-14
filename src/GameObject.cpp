@@ -1,18 +1,19 @@
 #include "Game.hpp"
 #include "GameObject.hpp"
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+
 #include <memory>
 
-GameObject::GameObject(SDL_Texture* texture, uint32_t xPos, uint32_t yPos, SDL_Renderer *renderer) {
-	mRenderer = renderer;
-	objTexture = texture;
-	mXPos = xPos;
-	mYPos = yPos;
+GameObject::GameObject(SDL_Texture* texture, uint32_t xPos, uint32_t yPos, SDL_Renderer *renderer) 
+	: mRenderer(renderer), mTexture(texture), mSrcRect({0, 0, 0, 0}), mDstRect({0, 0, 0, 0}) {
+	mXPos = xPos * 4;
+	mYPos = yPos * 4;
 }
 
 void GameObject::render() {
-	SDL_RenderCopy(mRenderer, objTexture, &mSrcRect, &mDstRect);
+	SDL_RenderCopy(mRenderer, mTexture, &mSrcRect, &mDstRect);
 }
 
 void GameObject::update() {

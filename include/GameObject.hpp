@@ -1,14 +1,18 @@
 #pragma once
+
 #include "Game.hpp"
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+
 #include <memory>
 
 class GameObject {
 private:
 	uint32_t mXPos, mYPos;
-	SDL_Texture *objTexture;
-	SDL_Rect mSrcRect, mDstRect;
+	SDL_Texture *mTexture;
+	SDL_Rect mSrcRect;
+	SDL_Rect mDstRect;
 	SDL_Renderer *mRenderer;
 
 public:

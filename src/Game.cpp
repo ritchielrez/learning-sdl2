@@ -1,5 +1,6 @@
 #include "Game.hpp"
 #include "GameObject.hpp"
+
 #include <iostream>
 #include <memory>
 
@@ -27,7 +28,7 @@ void Game::init(const char* title, uint32_t width, uint32_t height) {
 		return;
 	}
 
-	grass = std::make_unique<GameObject>(loadTexture("res/gfx/ground_grass_1.png"), 0, 0, mRenderer);
+	grass = std::make_unique<GameObject>(loadTexture("res/gfx/ground_grass_1.png"), 0, 150, mRenderer);
 
 	gameLoop();
 }
