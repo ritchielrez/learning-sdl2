@@ -12,10 +12,9 @@ class GameObject
     SDL_Texture *mTexture;
     SDL_Rect mSrcRect;
     SDL_Rect mDstRect;
-    SDL_Renderer *mRenderer;
 
   public:
-    GameObject(SDL_Texture *texture, uint32_t xPos, uint32_t yPos, SDL_Renderer *renderer);
+    GameObject(const char *texture, uint32_t xPos, uint32_t yPos);
     void update(double deltaTime);
     void render();
 };

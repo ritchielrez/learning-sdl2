@@ -1,21 +1,24 @@
-#include "GameObject.hpp"
 #include "Game.hpp"
+#include "GameObject.hpp"
+#include "TextureManager.hpp"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
 #include <memory>
 
-GameObject::GameObject(SDL_Texture *texture, uint32_t xPos, uint32_t yPos, SDL_Renderer *renderer)
-    : mTexture(texture), mSrcRect({0, 0, 0, 0}), mDstRect({0, 0, 0, 0}), mRenderer(renderer)
+GameObject::GameObject(const char *texture, uint32_t xPos, uint32_t yPos)
+    : mSrcRect({0, 0, 0, 0}), mDstRect({0, 0, 0, 0})
 {
+    mTexture = TextureManager::load(texture);
+
     mXPos = xPos * 4;
     mYPos = yPos * 4;
 }
 
 void GameObject::render()
 {
-    SDL_RenderCopy(mRenderer, mTexture, &mSrcRect, &mDstRect);
+    SDL_RenderCopy(Game::mRenderer, mTexture, &mSrcRect, &mDstRect);
 }
 
 void GameObject::update(double deltaTime)

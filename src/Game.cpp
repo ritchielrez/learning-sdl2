@@ -1,11 +1,16 @@
 #include "Game.hpp"
 #include "GameObject.hpp"
 
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_Image.h>
+
 #include <chrono>
 #include <iostream>
 #include <memory>
 
 using ChronoTime = std::chrono::high_resolution_clock::time_point;
+
+SDL_Renderer *Game::mRenderer = NULL;
 
 void Game::init(const char *title, uint32_t width, uint32_t height)
 {
@@ -31,7 +36,13 @@ void Game::init(const char *title, uint32_t width, uint32_t height)
 
     mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-    grass = std::make_unique<GameObject>(loadTexture("res/gfx/ground_grass_1.png"), 0, 150, mRenderer);
+    if (!mRenderer)
+    {
+        std::cout << "Renderer failed to init, Error: " << SDL_GetError << "\n";
+        return;
+    }
+
+    grass = std::make_unique<GameObject>("res/gfx/ground_grass_1.png", 0, 150);
 
     gameLoop();
 }
@@ -78,19 +89,6 @@ void Game::handleEvents()
             break;
         }
     }
-}
-
-SDL_Texture *Game::loadTexture(const char *filepath)
-{
-    SDL_Texture *texture = NULL;
-    texture = IMG_LoadTexture(mRenderer, filepath);
-
-    if (!texture)
-    {
-        std::cout << "This texture " << filepath << " failed to load, Error: " << SDL_GetError() << "\n";
-    }
-
-    return texture;
 }
 
 void Game::render()

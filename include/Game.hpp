@@ -29,10 +29,11 @@
 class Game
 {
   private:
-    SDL_Window *mWindow;
+    SDL_Window *mWindow = NULL;
 
   public:
     static SDL_Renderer *mRenderer;
+
     const uint32_t windowWidth = 1280;
     const uint32_t windowHeight = 720;
     bool gameRunning = true;
@@ -40,12 +41,10 @@ class Game
 
     std::unique_ptr<GameObject> grass;
 
-    Game();
     ~Game();
     void init(const char *title, uint32_t width, uint32_t height);
     void gameLoop();
     void handleEvents();
-    SDL_Texture *loadTexture(const char *filepath);
     void render();
     void update(double deltaTime);
 };
