@@ -31,12 +31,6 @@ void Game::init(const char *title, uint32_t width, uint32_t height)
 
     mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-    if (!mRenderer)
-    {
-        std::cout << "Renderer failed to init, Error: " << SDL_GetError << "\n";
-        return;
-    }
-
     grass = std::make_unique<GameObject>(loadTexture("res/gfx/ground_grass_1.png"), 0, 150, mRenderer);
 
     gameLoop();
@@ -57,14 +51,14 @@ void Game::gameLoop()
         ChronoTime newTime = std::chrono::high_resolution_clock::now();
         auto elapsedTime = newTime - currentTime;
 
-        double frameTime =
-            std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(elapsedTime).count();
+        double frameTime = std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(elapsedTime).count();
 
         currentTime = newTime;
-        
+
         accumulator += frameTime;
 
-        while (accumulator >= deltaTime) {
+        while (accumulator >= deltaTime)
+        {
             update(deltaTime);
             accumulator -= deltaTime;
         }
