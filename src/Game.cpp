@@ -1,8 +1,11 @@
 #include "Game.hpp"
 #include "GameObject.hpp"
 
+#include <chrono>
 #include <iostream>
 #include <memory>
+
+using ChronoTime = std::chrono::high_resolution_clock::time_point;
 
 void Game::init(const char *title, uint32_t width, uint32_t height)
 {
@@ -41,10 +44,31 @@ void Game::init(const char *title, uint32_t width, uint32_t height)
 
 void Game::gameLoop()
 {
+    double time = 0.0;
+    double deltaTime = 0.01;
+    double accumulator = 0.0;
+
+    ChronoTime currentTime = std::chrono::high_resolution_clock::now();
+
     while (gameRunning)
     {
         handleEvents();
-        update();
+
+        ChronoTime newTime = std::chrono::high_resolution_clock::now();
+        auto elapsedTime = newTime - currentTime;
+
+        double frameTime =
+            std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(elapsedTime).count();
+
+        currentTime = newTime;
+        
+        accumulator += frameTime;
+
+        while (accumulator >= deltaTime) {
+            update(deltaTime);
+            accumulator -= deltaTime;
+        }
+
         render();
     }
 }
@@ -86,9 +110,9 @@ void Game::render()
     SDL_RenderPresent(mRenderer);
 }
 
-void Game::update()
+void Game::update(double deltaTime)
 {
-    grass->update();
+    grass->update(deltaTime);
 }
 
 Game::~Game()

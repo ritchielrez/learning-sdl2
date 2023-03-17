@@ -18,7 +18,7 @@ void GameObject::render()
     SDL_RenderCopy(mRenderer, mTexture, &mSrcRect, &mDstRect);
 }
 
-void GameObject::update()
+void GameObject::update(double deltaTime)
 {
     mSrcRect.x = 0;
     mSrcRect.y = 0;

@@ -46,5 +46,5 @@ class Game
     void handleEvents();
     SDL_Texture *loadTexture(const char *filepath);
     void render();
-    void update();
+    void update(double deltaTime);
 };

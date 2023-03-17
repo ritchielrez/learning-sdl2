@@ -16,6 +16,6 @@ class GameObject
 
   public:
     GameObject(SDL_Texture *texture, uint32_t xPos, uint32_t yPos, SDL_Renderer *renderer);
-    void update();
+    void update(double deltaTime);
     void render();
 };
