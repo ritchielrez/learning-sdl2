@@ -26,24 +26,25 @@
 
 #define DEBUG 0
 
-class Game {
-private:
-	SDL_Window *mWindow = NULL;
-	SDL_Renderer *mRenderer = NULL;
+class Game
+{
+  private:
+    SDL_Window *mWindow = NULL;
+    SDL_Renderer *mRenderer = NULL;
 
-public:
-	const uint32_t windowWidth = 1280;
-	const uint32_t windowHeight = 720;
-	bool gameRunning = true;
-	SDL_Event event;
-	
-	std::unique_ptr<GameObject> grass;
+  public:
+    const uint32_t windowWidth = 1280;
+    const uint32_t windowHeight = 720;
+    bool gameRunning = true;
+    SDL_Event event;
 
-	~Game();
-	void init(const char* title, uint32_t width, uint32_t height);
-	void gameLoop();
-	void handleEvents();
-	SDL_Texture* loadTexture(const char *filepath);
-	void render();
-	void update();
+    std::unique_ptr<GameObject> grass;
+
+    ~Game();
+    void init(const char *title, uint32_t width, uint32_t height);
+    void gameLoop();
+    void handleEvents();
+    SDL_Texture *loadTexture(const char *filepath);
+    void render();
+    void update();
 };

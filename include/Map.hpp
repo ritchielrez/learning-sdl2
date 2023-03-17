@@ -5,8 +5,9 @@
 #include <SDL2/SDL_image.h>
 #include <vector>
 
-class Map {
-public:
+class Map
+{
+  public:
     Map(SDL_Texture *texture);
     void reset(SDL_Texture *texture);
     void update();
