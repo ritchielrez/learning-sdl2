@@ -42,7 +42,7 @@ class Game
 
     ~Game();
 
-    static SDL_Renderer *getRenderer() noexcept;
+    static constexpr SDL_Renderer *getRenderer() noexcept { return sRenderer; };
 
     void init(const char *title, uint32_t width, uint32_t height);
     void gameLoop();

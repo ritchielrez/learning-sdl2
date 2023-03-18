@@ -12,11 +12,6 @@ using ChronoTime = std::chrono::high_resolution_clock::time_point;
 
 SDL_Renderer *Game::sRenderer{NULL};
 
-SDL_Renderer *Game::getRenderer() noexcept
-{
-    return sRenderer;
-}
-
 void Game::init(const char *title, uint32_t width, uint32_t height)
 {
     if (SDL_Init(SDL_INIT_VIDEO > 0))
