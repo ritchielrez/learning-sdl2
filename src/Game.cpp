@@ -2,7 +2,7 @@
 #include "GameObject.hpp"
 
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_Image.h>
+#include <SDL2/SDL_image.h>
 
 #include <chrono>
 #include <iostream>
@@ -10,7 +10,12 @@
 
 using ChronoTime = std::chrono::high_resolution_clock::time_point;
 
-SDL_Renderer *Game::mRenderer = NULL;
+SDL_Renderer *Game::sRenderer{NULL};
+
+SDL_Renderer *Game::getRenderer() noexcept
+{
+    return sRenderer;
+}
 
 void Game::init(const char *title, uint32_t width, uint32_t height)
 {
@@ -34,9 +39,9 @@ void Game::init(const char *title, uint32_t width, uint32_t height)
         return;
     }
 
-    mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    sRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-    if (!mRenderer)
+    if (!sRenderer)
     {
         std::cout << "Renderer failed to init, Error: " << SDL_GetError << "\n";
         return;
@@ -49,7 +54,6 @@ void Game::init(const char *title, uint32_t width, uint32_t height)
 
 void Game::gameLoop()
 {
-    double time = 0.0;
     double deltaTime = 0.01;
     double accumulator = 0.0;
 
@@ -94,12 +98,12 @@ void Game::handleEvents()
 void Game::render()
 {
 
-    SDL_SetRenderDrawColor(mRenderer, 135, 206, 235, 255);
-    SDL_RenderClear(mRenderer);
+    SDL_SetRenderDrawColor(sRenderer, 135, 206, 235, 255);
+    SDL_RenderClear(sRenderer);
 
     grass->render();
 
-    SDL_RenderPresent(mRenderer);
+    SDL_RenderPresent(sRenderer);
 }
 
 void Game::update(double deltaTime)

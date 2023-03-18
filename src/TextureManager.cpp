@@ -9,7 +9,7 @@
 SDL_Texture *TextureManager::load(const char *fileName)
 {
     SDL_Texture *texture = NULL;
-    texture = IMG_LoadTexture(Game::mRenderer, fileName);
+    texture = IMG_LoadTexture(Game::getRenderer(), fileName);
 
     if (!texture)
     {
@@ -21,5 +21,5 @@ SDL_Texture *TextureManager::load(const char *fileName)
 
 void TextureManager::render(SDL_Texture *texture, SDL_Rect srcRect, SDL_Rect dstRect)
 {
-    SDL_RenderCopy(Game::mRenderer, texture, &srcRect, &dstRect);
+    SDL_RenderCopy(Game::getRenderer(), texture, &srcRect, &dstRect);
 }

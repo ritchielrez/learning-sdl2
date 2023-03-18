@@ -18,7 +18,7 @@ GameObject::GameObject(const char *texture, uint32_t xPos, uint32_t yPos)
 
 void GameObject::render()
 {
-    SDL_RenderCopy(Game::mRenderer, mTexture, &mSrcRect, &mDstRect);
+    TextureManager::render(mTexture, mSrcRect, mDstRect);
 }
 
 void GameObject::update(double deltaTime)
