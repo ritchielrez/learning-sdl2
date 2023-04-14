@@ -4,7 +4,7 @@ set(CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -m64")
 
 # Comment out this line if you're using default triplet for vcpkg
-set(VCPKG_TARGET_TRIPLET x64-mingw-dynamic)
+# set(VCPKG_TARGET_TRIPLET x64-mingw-dynamic)
 
 project(learning-sdl2 VERSION 1.0)
 
