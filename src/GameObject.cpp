@@ -1,5 +1,5 @@
-#include "Game.hpp"
 #include "GameObject.hpp"
+#include "Game.hpp"
 #include "TextureManager.hpp"
 
 #include <SDL2/SDL.h>

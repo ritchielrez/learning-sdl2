@@ -1,6 +1,6 @@
 #include "Game.hpp"
-#include "GameObject.hpp"
 #include "Entity.hpp"
+#include "GameObject.hpp"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
