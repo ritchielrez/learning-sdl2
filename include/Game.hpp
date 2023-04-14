@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameObject.hpp"
+#include "Manager.hpp"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -38,6 +39,7 @@ class Game
     bool gameRunning = true;
     SDL_Event event;
 
+    Manager manager;
     std::unique_ptr<GameObject> grass;
 
     ~Game();
