@@ -92,7 +92,6 @@ void Game::handleEvents()
 
 void Game::render()
 {
-
     SDL_SetRenderDrawColor(sRenderer, 135, 206, 235, 255);
     SDL_RenderClear(sRenderer);
 
