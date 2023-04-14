@@ -1,13 +1,56 @@
 #pragma once
-#include "Math.hpp"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
+
+#include "Component.hpp"
+
+#include <algorithm>
+#include <array>
+#include <bitset>
+#include <cassert>
+#include <iostream>
+#include <memory>
+#include <type_traits>
+#include <vector>
+
+constexpr std::size_t maxComponents = 32;
+using ComponentArray = std::array<Component *, maxComponents>;
+using ComponentBitset = std::bitset<maxComponents>;
 
 class Entity
 {
+  private:
+    std::vector<std::unique_ptr<Component>> components;
+    ComponentArray componentArray;
+    ComponentBitset componentBitset;
+
   public:
-    Entity(Vector2f p_pos, SDL_Texture *p_texture);
-    Vector2f pos;
-    SDL_Rect currentFrame;
-    SDL_Texture *texture;
+    bool alive = true;
+
+    void update(double dt)
+    {
+        for (auto &c : components)
+            c->update(dt);
+    }
+
+    void render()
+    {
+        for (auto &c : components)
+            c->render();
+    }
+
+    template <typename T, typename... TArgs> T &addComponent(TArgs &&...mArgs)
+    {
+        T *c = new T(std::forward<TArgs>(mArgs)...);
+
+        c->entity = this;
+
+        std::unique_ptr<Component> component = std::unique_ptr<T>(c);
+        components.emplace_back(std::move(component));
+
+        componentArray[getComponentTypeID<T>()] = c;
+        componentBitset[getComponentTypeID<T>()] = true;
+
+        c->init();
+
+        return *c;
+    }
 };
