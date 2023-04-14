@@ -1,5 +1,6 @@
 #include "Game.hpp"
 #include "GameObject.hpp"
+#include "Entity.hpp"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -42,6 +43,7 @@ void Game::init(const char *title, uint32_t width, uint32_t height)
         return;
     }
 
+    Entity &ent = manager.addEntity();
     grass = std::make_unique<GameObject>("res/gfx/ground_grass_1.png", 0, 150);
 
     gameLoop();
