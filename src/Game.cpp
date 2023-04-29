@@ -5,6 +5,8 @@
 #include "ECS/Entity.hpp"
 #include "ECS/Manager.hpp"
 
+#include "ECS/RenderComponent.hpp"
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
@@ -46,8 +48,9 @@ void Game::init(const char *title, uint32_t width, uint32_t height)
         return;
     }
 
-    Entity &ent = manager.addEntity();
-    grass = std::make_unique<GameObject>("res/gfx/ground_grass_1.png", 0, 150);
+    Entity &grass = manager.addEntity();
+    // grass = std::make_unique<GameObject>("res/gfx/ground_grass_1.png", 0, 150);
+    grass.addComponent<RenderComponent>("res/gfx/ground_grass_1.png", 0, 150, 4);
 
     gameLoop();
 }
@@ -62,6 +65,8 @@ void Game::gameLoop()
     while (gameRunning)
     {
         handleEvents();
+
+        manager.refresh();
 
         ChronoTime newTime = std::chrono::high_resolution_clock::now();
         auto elapsedTime = newTime - currentTime;
@@ -100,14 +105,14 @@ void Game::render()
     SDL_SetRenderDrawColor(sRenderer, 135, 206, 235, 255);
     SDL_RenderClear(sRenderer);
 
-    grass->render();
+    manager.render();
 
     SDL_RenderPresent(sRenderer);
 }
 
 void Game::update(double deltaTime)
 {
-    grass->update(deltaTime);
+    manager.update(deltaTime);
 }
 
 Game::~Game()
