@@ -1,6 +1,9 @@
 #include "Game.hpp"
-#include "Entity.hpp"
 #include "GameObject.hpp"
+
+#include "ECS/Component.hpp"
+#include "ECS/Entity.hpp"
+#include "ECS/Manager.hpp"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
