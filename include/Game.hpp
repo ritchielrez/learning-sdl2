@@ -30,10 +30,6 @@
 
 class Game
 {
-  private:
-    SDL_Window *mWindow = NULL;
-    static SDL_Renderer *sRenderer;
-
   public:
     const uint32_t windowWidth = 1280;
     const uint32_t windowHeight = 720;
@@ -45,11 +41,18 @@ class Game
 
     ~Game();
 
-    static SDL_Renderer *getRenderer() noexcept { return sRenderer; };
+    static SDL_Renderer *getRenderer() noexcept
+    {
+        return sRenderer;
+    };
 
     void init(const char *title, uint32_t width, uint32_t height);
     void gameLoop();
     void handleEvents();
     void render();
     void update(double deltaTime);
+
+  private:
+    SDL_Window *mWindow = NULL;
+    static SDL_Renderer *sRenderer;
 };
