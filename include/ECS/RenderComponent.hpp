@@ -23,10 +23,6 @@ class RenderComponent : public Component
         mYPos = yPos * mScale;
     }
 
-    void init() override
-    {
-    }
-
     void update(double dt) override
     {
         mSrcRect.x = 0;
