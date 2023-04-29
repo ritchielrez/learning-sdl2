@@ -9,6 +9,7 @@
 #include <type_traits>
 #include <vector>
 
+
 struct Component;
 class Entity;
 struct Manager;
