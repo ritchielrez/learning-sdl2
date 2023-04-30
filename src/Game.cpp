@@ -1,10 +1,10 @@
 #include "Game.hpp"
-#include "GameObject.hpp"
 
 #include "ECS/Component.hpp"
 #include "ECS/Entity.hpp"
 #include "ECS/Manager.hpp"
 
+#include "ECS/PositionComponent.hpp"
 #include "ECS/RenderComponent.hpp"
 
 #include <SDL2/SDL.h>

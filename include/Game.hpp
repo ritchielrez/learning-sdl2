@@ -1,7 +1,5 @@
 #pragma once
 
-#include "GameObject.hpp"
-
 #include "ECS/Manager.hpp"
 
 #include <SDL2/SDL.h>
@@ -37,7 +35,6 @@ class Game
     SDL_Event event;
 
     Manager manager;
-    std::unique_ptr<GameObject> grass;
 
     ~Game();
 
