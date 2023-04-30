@@ -4,8 +4,8 @@
 #include "ECS/Entity.hpp"
 #include "ECS/Manager.hpp"
 
-#include "ECS/PositionComponent.hpp"
 #include "ECS/RenderComponent.hpp"
+#include "Vector2D.hpp"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -49,8 +49,7 @@ void Game::init(const char *title, uint32_t width, uint32_t height)
     }
 
     Entity &grass = manager.addEntity();
-    grass.addComponent<PositionComponent>(0, 150);
-    grass.addComponent<RenderComponent>("res/gfx/ground_grass_1.png", 4);
+    grass.addComponent<RenderComponent>("res/gfx/ground_grass_1.png", Vector2D(0, 150), 4);
 
     gameLoop();
 }
