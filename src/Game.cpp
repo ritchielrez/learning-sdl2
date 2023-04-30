@@ -49,8 +49,8 @@ void Game::init(const char *title, uint32_t width, uint32_t height)
     }
 
     Entity &grass = manager.addEntity();
-    // grass = std::make_unique<GameObject>("res/gfx/ground_grass_1.png", 0, 150);
-    grass.addComponent<RenderComponent>("res/gfx/ground_grass_1.png", 0, 150, 4);
+    grass.addComponent<PositionComponent>(0, 150);
+    grass.addComponent<RenderComponent>("res/gfx/ground_grass_1.png", 4);
 
     gameLoop();
 }
