@@ -53,4 +53,16 @@ class Entity
 
         return *c;
     }
+
+    template <typename T> bool hasComponent()
+    {
+        return componentBitset[getComponentTypeID<T>()];
+    }
+
+    template <typename T> T &getComponent()
+    {
+        assert(hasComponent<T>());
+        Component component = componentArray[getComponentTypeID<T>()];
+        return *static_cast<T *>(component);
+    }
 };
