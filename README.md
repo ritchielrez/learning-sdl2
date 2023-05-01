@@ -16,14 +16,16 @@ The project currently depends on `SDL2` and `SDL2_image`. This has been only tes
 
 Compile and run the project using [CMake](https://cmake.org/):
 ``` 
+git submodule update
 cmake -Bbuild/ -S.
 cd build
 MSBuild.exe -m learning-sdl2.sln
 ./Debug/main.exe
 ```
 
-If you are using **Linux** I recommend to use [Ninja](https://ninja-build.org/) for faster builds:
+If you are using **Linux**, I recommend to use [Ninja](https://ninja-build.org/) for faster builds:
 ```
+git submodule update
 cmake -Bbuild/ -S. -G"Ninja"
 cd build
 ninja
