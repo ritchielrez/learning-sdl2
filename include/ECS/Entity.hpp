@@ -62,7 +62,7 @@ class Entity
     template <typename T> T &getComponent()
     {
         assert(hasComponent<T>());
-        Component component = componentArray[getComponentTypeID<T>()];
+        Component *component = componentArray[getComponentTypeID<T>()];
         return *static_cast<T *>(component);
     }
 };
