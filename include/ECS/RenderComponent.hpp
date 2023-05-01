@@ -24,8 +24,6 @@ class RenderComponent : public Component
 
     void init() override
     {
-        mPos.x *= mScale;
-        mPos.y *= mScale;
     }
 
     void update(double dt) override
@@ -35,8 +33,8 @@ class RenderComponent : public Component
         mSrcRect.w = 32;
         mSrcRect.h = 32;
 
-        mDstRect.x = mPos.x;
-        mDstRect.y = mPos.y;
+        mDstRect.x = mPos.x * mScale;
+        mDstRect.y = mPos.y * mScale;
         mDstRect.w = mSrcRect.w * mScale;
         mDstRect.h = mSrcRect.h * mScale;
     }
