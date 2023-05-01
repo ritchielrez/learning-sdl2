@@ -11,6 +11,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+#include <bits/chrono.h>
 #include <chrono>
 #include <iostream>
 #include <memory>
@@ -74,6 +75,9 @@ void Game::gameLoop()
         auto elapsedTime = newTime - currentTime;
 
         double frameTime = std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(elapsedTime).count();
+        double frameTimeInSecs = std::chrono::duration<double>(elapsedTime).count();
+
+        std::cout << "Current FPS: " << 1.0f / frameTimeInSecs << "\n";
 
         currentTime = newTime;
 
