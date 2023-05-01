@@ -1,17 +1,31 @@
 #pragma once
-#include "Math.hpp"
-#include "Tile.hpp"
+
+#include "ECS/Component.hpp"
+#include "ECS/Entity.hpp"
+#include "ECS/Manager.hpp"
+
+#include "ECS/RenderComponent.hpp"
+
+#include "Game.hpp"
+#include "Vector2D.hpp"
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+
+#include <cstdint>
 #include <vector>
 
-class Map
+const uint32_t tilesTotal = 11;
+const uint32_t tileWidth = 32;
+const uint32_t tileHeight = 32;
+
+struct Map
 {
-  public:
-    Map(SDL_Texture *texture);
-    void reset(SDL_Texture *texture);
+    Map();
+    Map(const char *texturePath);
+    void init(const char *texturePath);
     void update();
 
-    std::vector<Tile> tiles;
-    std::vector<Tile> tilesCollidedList;
+    SDL_Texture *mTexture;
+    Entity *grass[tilesTotal];
 };

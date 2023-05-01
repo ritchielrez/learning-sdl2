@@ -20,10 +20,6 @@
 #define PLAYER_FRAMES 4
 #define PLAYER_FRAME_DELAYED 8
 
-#define TILE_WIDTH 32
-#define TILE_HEIGHT 32
-#define TILES_TOTAL 11
-
 #define DEBUG 0
 
 class Game

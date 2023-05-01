@@ -1,11 +1,12 @@
 #include "Game.hpp"
+#include "Map.hpp"
+#include "Vector2D.hpp"
 
 #include "ECS/Component.hpp"
 #include "ECS/Entity.hpp"
 #include "ECS/Manager.hpp"
 
 #include "ECS/RenderComponent.hpp"
-#include "Vector2D.hpp"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -18,6 +19,8 @@ using ChronoTime = std::chrono::high_resolution_clock::time_point;
 
 Manager Game::sManager;
 SDL_Renderer *Game::sRenderer{NULL};
+
+Map map;
 
 void Game::init(const char *title, uint32_t width, uint32_t height)
 {
@@ -49,8 +52,7 @@ void Game::init(const char *title, uint32_t width, uint32_t height)
         return;
     }
 
-    Entity &grass = manager.addEntity();
-    grass.addComponent<RenderComponent>("res/gfx/ground_grass_1.png", Vector2D(0, 150), 4);
+    map.init("res/gfx/ground_grass_1.png");
 
     gameLoop();
 }
@@ -112,7 +114,7 @@ void Game::render()
 
 void Game::update(double deltaTime)
 {
-    manager.update(deltaTime);
+    map.update();
     sManager.update(deltaTime);
 }
 
