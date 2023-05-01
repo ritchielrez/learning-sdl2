@@ -34,7 +34,7 @@ class Game
     bool gameRunning = true;
     SDL_Event event;
 
-    Manager manager;
+    static Manager sManager;
 
     ~Game();
 

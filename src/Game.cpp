@@ -16,6 +16,7 @@
 
 using ChronoTime = std::chrono::high_resolution_clock::time_point;
 
+Manager Game::sManager;
 SDL_Renderer *Game::sRenderer{NULL};
 
 void Game::init(const char *title, uint32_t width, uint32_t height)
@@ -65,7 +66,7 @@ void Game::gameLoop()
     {
         handleEvents();
 
-        manager.refresh();
+        sManager.refresh();
 
         ChronoTime newTime = std::chrono::high_resolution_clock::now();
         auto elapsedTime = newTime - currentTime;
@@ -104,7 +105,7 @@ void Game::render()
     SDL_SetRenderDrawColor(sRenderer, 135, 206, 235, 255);
     SDL_RenderClear(sRenderer);
 
-    manager.render();
+    sManager.render();
 
     SDL_RenderPresent(sRenderer);
 }
@@ -112,6 +113,7 @@ void Game::render()
 void Game::update(double deltaTime)
 {
     manager.update(deltaTime);
+    sManager.update(deltaTime);
 }
 
 Game::~Game()
