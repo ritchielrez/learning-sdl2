@@ -1,23 +1,20 @@
 cmake_minimum_required(VERSION 3.10)
-set(CXX_STANDARD 23)
+set(CXX_STANDARD 20)
 set(CXX_STANDARD_REQUIRED ON)
-string(TOLOWER "${CMAKE_CXX_COMPILER_ID}" COMPILER_ID)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zi /Wall")
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -m64")
 
-# Comment out this line if you're using default triplet for vcpkg
-# set(VCPKG_TARGET_TRIPLET x64-mingw-dynamic)
+set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
+  CACHE STRING "Vcpkg toolchain file")
 
-project(learning-sdl2 VERSION 1.0)
+project(learning-sdl2 VERSION 0.1)
+
+find_package(SDL2 CONFIG REQUIRED)
+find_package(SDL2_image CONFIG REQUIRED)
 
 file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS "src/*.cpp")
 
 add_executable(main ${SRC_FILES})
 
 target_include_directories(main PRIVATE "include/")
-
-find_package(SDL2 CONFIG REQUIRED)
-find_package(SDL2_image CONFIG REQUIRED)
 
 target_link_libraries(main
     PRIVATE
