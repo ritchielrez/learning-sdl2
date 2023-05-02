@@ -84,7 +84,6 @@ void Game::gameLoop()
         auto elapsedTime = newTime - currentTime;
 
         double frameTime = std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(elapsedTime).count();
-
         double frameTimeInSecs = std::chrono::duration<double>(elapsedTime).count();
 
         std::cout << "Frame time: " << frameTimeInSecs << "\n";
