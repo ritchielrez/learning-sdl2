@@ -43,7 +43,7 @@ class Game
     void gameLoop();
     void handleEvents();
     void render();
-    void update(double deltaTime);
+    void update(double timeStep);
 
   private:
     SDL_Window *mWindow = NULL;

@@ -24,7 +24,7 @@ struct Map
     Map();
     Map(const char *texturePath);
     void init(const char *texturePath);
-    void update();
+    void update(double timeStep);
 
     SDL_Texture *mTexture;
     Entity *grass[tilesTotal];
