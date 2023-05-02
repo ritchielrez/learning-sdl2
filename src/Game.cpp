@@ -59,8 +59,9 @@ void Game::init(const char *title, uint32_t width, uint32_t height)
 
 void Game::gameLoop()
 {
-    double deltaTime = 0.01;
-    double accumulator = 0.0;
+    // double time = 0.0;
+    // double deltaTime = 0.01;
+    // double accumulator = 0.0;
 
     ChronoTime currentTime = std::chrono::high_resolution_clock::now();
 
@@ -75,18 +76,21 @@ void Game::gameLoop()
 
         double frameTime = std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(elapsedTime).count();
         double frameTimeInSecs = std::chrono::duration<double>(elapsedTime).count();
+        double fps = 1.0f / frameTimeInSecs;
 
-        std::cout << "Current FPS: " << 1.0f / frameTimeInSecs << "\n";
+        std::cout << "Current FPS: " << fps << "\n";
 
         currentTime = newTime;
 
-        accumulator += frameTime;
-
-        while (accumulator >= deltaTime)
-        {
-            update(deltaTime);
-            accumulator -= deltaTime;
-        }
+        // accumulator += frameTime;
+        //
+        // while (accumulator >= deltaTime)
+        // {
+        //     update(time * deltaTime);
+        //     accumulator -= deltaTime;
+        //     time += deltaTime;
+        // }
+        update(fps * frameTimeInSecs);
 
         render();
     }
@@ -117,7 +121,7 @@ void Game::render()
 
 void Game::update(double deltaTime)
 {
-    map.update();
+    map.update(deltaTime);
     sManager.update(deltaTime);
 }
 
