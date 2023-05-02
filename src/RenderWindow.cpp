@@ -54,13 +54,8 @@ void RenderWindow::render(Player &player, int frame, int scale) {
   #endif
 
   SDL_Rect dst;
-  #if DEBUG
-  dst.y = (player.pos.y * scale) - (Game::camera.y * scale);
-  dst.x = (player.pos.x * scale) - (Game::camera.x * scale);
-  #else
   dst.x = (player.pos.x * scale);
   dst.y = (player.pos.y * scale);
-  #endif
   dst.w = src.w * scale;
   dst.h = src.h * scale;
 
