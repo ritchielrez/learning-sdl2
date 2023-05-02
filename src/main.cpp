@@ -8,6 +8,9 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
+#include <chrono>
+
+using ChronoTime = std::chrono::high_resolution_clock::time_point;
 
 int main(int argc, char *argv[]) {
   if (SDL_Init(SDL_INIT_VIDEO > 0))
@@ -28,6 +31,8 @@ int main(int argc, char *argv[]) {
   bool gameRunning = true;
   SDL_Event event;
   int frame = 0;
+
+  ChronoTime currentTime = std::chrono::high_resolution_clock::now();
 
   while (gameRunning) {
     while (SDL_PollEvent(&event)) {
@@ -63,6 +68,16 @@ int main(int argc, char *argv[]) {
 
     map.tilesCollidedList.clear();
     map.update();
+
+    ChronoTime newTime = std::chrono::high_resolution_clock::now();
+    auto elapsedTime = newTime - currentTime;
+
+    double frameTime = std::chrono::duration<double>(elapsedTime).count();
+
+    std::cout << "Frame Time: " << frameTime << "\n";
+    std::cout << "Current FPS: " << 1.0f / frameTime << "\n";
+
+    currentTime = newTime;
 
     if (frame / PLAYER_FRAME_DELAYED >= PLAYER_FRAMES) {
       frame = 0;
