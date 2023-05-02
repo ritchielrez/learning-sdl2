@@ -90,7 +90,7 @@ void Game::gameLoop()
         //     accumulator -= deltaTime;
         //     time += deltaTime;
         // }
-        update(fps * frameTimeInSecs);
+        update(frameTimeInSecs);
 
         render();
     }
