@@ -59,11 +59,10 @@ void Game::init(const char *title, uint32_t width, uint32_t height)
 
 void Game::gameLoop()
 {
-    const double ftStep = 1.0, ftSlice = 1.0;
+    double deltaTime = 0.01;
+    double accumulator = 0.0;
 
     ChronoTime currentTime = std::chrono::high_resolution_clock::now();
-
-    double lastFrameTime = 0.0, currentSlice = 0.0;
 
     while (gameRunning)
     {
@@ -71,28 +70,25 @@ void Game::gameLoop()
 
         sManager.refresh();
 
-        currentSlice += lastFrameTime;
-
-        for (; currentSlice >= ftSlice; currentSlice -= ftSlice)
-        {
-            update(ftSlice);
-        }
-
-        render();
-
         ChronoTime newTime = std::chrono::high_resolution_clock::now();
         auto elapsedTime = newTime - currentTime;
 
         double frameTime = std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(elapsedTime).count();
         double frameTimeInSecs = std::chrono::duration<double>(elapsedTime).count();
 
-        std::cout << "Frame time: " << frameTimeInSecs << "\n";
-
-        lastFrameTime = frameTime;
-
         std::cout << "Current FPS: " << 1.0f / frameTimeInSecs << "\n";
 
         currentTime = newTime;
+
+        accumulator += frameTime;
+
+        while (accumulator >= deltaTime)
+        {
+            update(deltaTime);
+            accumulator -= deltaTime;
+        }
+
+        render();
     }
 }
 
@@ -119,10 +115,10 @@ void Game::render()
     SDL_RenderPresent(sRenderer);
 }
 
-void Game::update(double timeStep)
+void Game::update(double deltaTime)
 {
-    map.update(timeStep);
-    sManager.update(timeStep);
+    map.update();
+    sManager.update(deltaTime);
 }
 
 Game::~Game()
