@@ -4,9 +4,9 @@
 
 struct Vector2D
 {
-    uint32_t x, y;
+    double x, y;
 
-    Vector2D(uint32_t pX, uint32_t pY) : x(pX), y(pY)
+    Vector2D(double pX, double pY) : x(pX), y(pY)
     {
     }
 };

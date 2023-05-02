@@ -28,18 +28,18 @@ void Map::init(const char *texturePath)
     for (uint32_t i = 0; i < tilesTotal; ++i)
     {
         grass[i] = &Game::sManager.addEntity();
-        grass[i]->addComponent<RenderComponent>(texturePath, Vector2D(i * 32, 150), 4);
+        grass[i]->addComponent<RenderComponent>(texturePath, Vector2D(i * tileWidth, 150), 4);
     }
 }
 
-void Map::update()
+void Map::update(double timeStep)
 {
     for (uint32_t i = 0; i < tilesTotal; ++i)
     {
-        grass[i]->getComponent<RenderComponent>().mPos.x -= 1;
+        grass[i]->getComponent<RenderComponent>().mPos.x -= 0.06666 * timeStep;
         if (grass[i]->getComponent<RenderComponent>().mPos.x + tileWidth  <= 0)
         {
-            grass[i]->getComponent<RenderComponent>().mPos.x = tileWidth * (tilesTotal - 1) - 1;
+            grass[i]->getComponent<RenderComponent>().mPos.x = tileWidth * (tilesTotal - 1) - 0.06666 * timeStep;
         }
     }
 }
