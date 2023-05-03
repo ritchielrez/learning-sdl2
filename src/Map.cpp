@@ -12,6 +12,7 @@
 #include <SDL2/SDL_image.h>
 
 #include <cstdint>
+#include <cmath>
 #include <vector>
 
 Map::Map()
