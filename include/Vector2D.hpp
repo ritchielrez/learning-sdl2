@@ -4,7 +4,7 @@
 
 struct Vector2D
 {
-    double x, y;
+    int x, y;
 
     Vector2D(double pX, double pY) : x(pX), y(pY)
     {
