@@ -76,9 +76,9 @@ void Game::gameLoop()
 
         double frameTime = std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(elapsedTime).count();
         float frameTimeInSecs = Math::roundToFloat(std::chrono::duration<double>(elapsedTime).count());
-        double fps = 1.0f / frameTimeInSecs;
+        double fps = 1000 / frameTime;
 
-        std::cout << "Current FPS: " << fps << "\n";
+        std::cout << "Current FPS: " << round(fps) << "\n";
 
         currentTime = newTime;
 
