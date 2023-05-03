@@ -1,17 +1,17 @@
 #pragma once
+
 #include <iostream>
 
-struct Vector2f
+namespace Math
 {
-    Vector2f() : x(0.0f), y(0.0f)
-    {
-    }
-    Vector2f(float p_x, float p_y) : x(p_x), y(p_y)
-    {
-    }
-    void print()
-    {
-        std::cout << x << " " << y << "\n";
-    }
-    float x, y;
-};
+float roundToFloat(float num)
+{
+    char str[40];
+
+    sprintf(str, "%.2f", num);
+    sscanf(str, "%f", &num);
+
+    return num;
+}
+
+} // namespace Math
