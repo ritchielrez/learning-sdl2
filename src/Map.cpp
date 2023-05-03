@@ -37,10 +37,10 @@ void Map::update(double timeStep)
 {
     for (uint32_t i = 0; i < tilesTotal; ++i)
     {
-        grass[i]->getComponent<RenderComponent>().mPos.x -= 60 * timeStep;
+        grass[i]->getComponent<RenderComponent>().mPos.x -= round(60 * timeStep);
         if (grass[i]->getComponent<RenderComponent>().mPos.x + tileWidth  <= 0)
         {
-            grass[i]->getComponent<RenderComponent>().mPos.x = tileWidth * (tilesTotal - 1) - 60 * timeStep;
+            grass[i]->getComponent<RenderComponent>().mPos.x = round(tileWidth * (tilesTotal - 1) - 60 * timeStep);
         }
     }
 }
