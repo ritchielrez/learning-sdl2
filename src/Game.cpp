@@ -79,6 +79,7 @@ void Game::gameLoop()
         double fps = 1000 / frameTime;
 
         std::cout << "Current FPS: " << round(fps) << "\n";
+        std::cout << "Frame Time(in milliseconds): " << frameTime << "\n";
 
         currentTime = newTime;
 
