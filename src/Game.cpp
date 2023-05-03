@@ -1,5 +1,6 @@
 #include "Game.hpp"
 #include "Map.hpp"
+#include "Math.hpp"
 #include "Vector2D.hpp"
 
 #include "ECS/Component.hpp"
@@ -12,6 +13,7 @@
 #include <SDL2/SDL_image.h>
 
 #include <chrono>
+#include <cmath>
 #include <iostream>
 #include <memory>
 
