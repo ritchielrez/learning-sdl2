@@ -19,7 +19,7 @@ SDL_Texture *TextureManager::load(const char *fileName)
     return texture;
 }
 
-void TextureManager::render(SDL_Texture *texture, SDL_Rect srcRect, SDL_Rect dstRect)
+void TextureManager::render(SDL_Texture *texture, SDL_Rect srcRect, SDL_FRect dstRect)
 {
-    SDL_RenderCopy(Game::getRenderer(), texture, &srcRect, &dstRect);
+    SDL_RenderCopyF(Game::getRenderer(), texture, &srcRect, &dstRect);
 }

@@ -13,7 +13,8 @@ class RenderComponent : public Component
   public:
     Vector2D mPos;
     uint16_t mScale;
-    SDL_Rect mSrcRect, mDstRect;
+    SDL_Rect mSrcRect;
+    SDL_FRect mDstRect;
     SDL_Texture *mTexture;
 
     RenderComponent(const char *texture, Vector2D pos, uint16_t scale)
