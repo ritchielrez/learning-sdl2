@@ -1,6 +1,7 @@
 #include "Map.hpp"
 #include "Game.hpp"
 #include "TextureManager.hpp"
+#include "Vector2D.hpp"
 
 #include "ECS/Component.hpp"
 #include "ECS/Entity.hpp"
