@@ -69,33 +69,39 @@ void Game::gameLoop()
 
     while (gameRunning)
     {
+        int delayFrameTime = 0;
+        ChronoTime startTime = std::chrono::high_resolution_clock::now();
+
         handleEvents();
 
         sManager.refresh();
 
-        ChronoTime newTime = std::chrono::high_resolution_clock::now();
-        auto elapsedTime = newTime - currentTime;
-
-        double frameTime = std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(elapsedTime).count();
-        float frameTimeInSecs = Math::roundToFloat(std::chrono::duration<double>(elapsedTime).count());
-        double fps = 1000 / frameTime;
-
-        std::cout << "Current FPS: " << round(fps) << "\n";
-        std::cout << "Frame Time(in milliseconds): " << frameTime << "\n";
-
-        currentTime = newTime;
-
-        // accumulator += frameTime;
-        //
-        // while (accumulator >= deltaTime)
-        // {
-        //     update(time * deltaTime);
-        //     accumulator -= deltaTime;
-        //     time += deltaTime;
-        // }
-        update(frameTimeInSecs);
+        update(1.0f / capFPS);
 
         render();
+
+        ChronoTime endTime = std::chrono::high_resolution_clock::now();
+        auto elapsedTime = endTime - startTime;
+
+        frameTime = std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(elapsedTime).count();
+        frameTimeInSecs = Math::roundToFloat(std::chrono::duration<double>(elapsedTime).count());
+
+        std::cout << "[INFO] Frame time(in ms): " << frameTime << "\n";
+
+        if (frameTime < capFrameTime)
+        {
+            delayFrameTime = capFrameTime - frameTime;
+            SDL_Delay(delayFrameTime);
+        }
+
+        std::cout << "[INFO] Delay frame time(in ms): " << delayFrameTime << "\n";
+
+        frameTime += delayFrameTime;
+        double fps = 1000.0f / frameTime;
+
+        std::cout << "[INFO] Current FPS: " << round(fps) << "\n";
+
+        std::cout << "[INFO] Frame " << ++countedFrames << " finished\n";
     }
 }
 
