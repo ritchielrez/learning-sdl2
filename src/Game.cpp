@@ -59,13 +59,16 @@ void Game::init(const char *title, uint32_t width, uint32_t height)
     gameLoop();
 }
 
+// TODO: Make this gameloop work well on other frame rates
 void Game::gameLoop()
 {
-    // double time = 0.0;
-    // double deltaTime = 0.01;
-    // double accumulator = 0.0;
+    double frameTime = 0.0;
+    float frameTimeInSecs = 0.0;
 
-    ChronoTime currentTime = std::chrono::high_resolution_clock::now();
+    const int capFPS = 60;
+    const int capFrameTime = 1000 / capFPS;
+
+    int countedFrames = 0;
 
     while (gameRunning)
     {
