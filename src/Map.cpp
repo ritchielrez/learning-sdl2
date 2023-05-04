@@ -33,6 +33,7 @@ void Map::init(const char *texturePath)
     }
 }
 
+// TODO: Make this update function work consistently well with different time steps
 void Map::update(double timeStep)
 {
     for (uint32_t i = 0; i < tilesTotal; ++i)
