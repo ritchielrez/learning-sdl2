@@ -7,7 +7,6 @@
 #include "ECS/Entity.hpp"
 #include "ECS/Manager.hpp"
 #include "ECS/RenderComponent.hpp"
-#include "Vector2D.hpp"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
