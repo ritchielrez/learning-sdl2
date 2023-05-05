@@ -26,7 +26,7 @@ Map map;
 
 void Game::init(const char *title, uint32_t width, uint32_t height)
 {
-    if (SDL_Init(SDL_INIT_VIDEO) > 0)
+    if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
         std::cout << "SDL failed to init, Error: " << SDL_GetError << "\n";
         return;
