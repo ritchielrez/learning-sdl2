@@ -66,7 +66,6 @@ void Game::init(const char *title, uint32_t width, uint32_t height)
 void Game::gameLoop()
 {
     double frameTime = 0.0;
-    float frameTimeInSecs = 0.0;
 
     const int capFPS = 60;
     const int capFrameTime = 1000 / capFPS;
