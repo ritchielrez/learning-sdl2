@@ -3,6 +3,9 @@
 #include "Math.hpp"
 #include "Vector2D.hpp"
 
+#define RIT_TIMER_IMPLEMENTATION
+#include "ritTimer.hpp"
+
 #include "ECS/Component.hpp"
 #include "ECS/Entity.hpp"
 #include "ECS/Manager.hpp"
@@ -73,7 +76,7 @@ void Game::gameLoop()
     while (gameRunning)
     {
         int delayFrameTime = 0;
-        ChronoTime startTime = std::chrono::high_resolution_clock::now();
+        rit::Timer frameTimer;
 
         handleEvents();
 
@@ -83,12 +86,7 @@ void Game::gameLoop()
 
         render();
 
-        ChronoTime endTime = std::chrono::high_resolution_clock::now();
-        auto elapsedTime = endTime - startTime;
-
-        frameTime = std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(elapsedTime).count();
-        frameTimeInSecs = Math::roundToFloat(std::chrono::duration<double>(elapsedTime).count());
-
+        frameTime = frameTimer.getTicks<rit::milli>();
         std::cout << "[INFO] Frame time(in ms): " << frameTime << "\n";
 
         if (frameTime < capFrameTime)

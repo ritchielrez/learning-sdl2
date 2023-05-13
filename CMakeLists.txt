@@ -18,6 +18,7 @@ file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS "src/*.cpp")
 add_executable(main ${SRC_FILES})
 
 target_include_directories(main PRIVATE "include/")
+target_include_directories(main PRIVATE "vendor/ritTimer/include")
 
 find_package(SDL2 CONFIG REQUIRED)
 find_package(SDL2_image CONFIG REQUIRED)

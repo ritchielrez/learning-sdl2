@@ -1,3 +1,6 @@
 [submodule "vcpkg"]
 	path = vcpkg
 	url = https://github.com/Microsoft/vcpkg.git
+[submodule "vendor/ritTimer"]
+	path = vendor/ritTimer
+	url = https://github.com/ritchielrez/ritTimer
