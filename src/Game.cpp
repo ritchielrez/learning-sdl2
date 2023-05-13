@@ -29,7 +29,7 @@ Map map;
 
 void Game::init(const char *title, uint32_t width, uint32_t height)
 {
-    if (SDL_Init(SDL_INIT_VIDEO) < 0)
+    if (SDL_Init(SDL_INIT_VIDEO))
     {
         std::cout << "SDL failed to init, Error: " << SDL_GetError << "\n";
         return;
@@ -79,11 +79,8 @@ void Game::gameLoop()
         rit::Timer frameTimer;
 
         handleEvents();
-
         sManager.refresh();
-
         update(1.0f / capFPS);
-
         render();
 
         frameTime = frameTimer.getTicks<rit::milli>();
@@ -94,14 +91,12 @@ void Game::gameLoop()
             delayFrameTime = capFrameTime - frameTime;
             SDL_Delay(delayFrameTime);
         }
-
         std::cout << "[INFO] Delay frame time(in ms): " << delayFrameTime << "\n";
 
         frameTime += delayFrameTime;
         double fps = 1000.0f / frameTime;
 
         std::cout << "[INFO] Current FPS: " << round(fps) << "\n";
-
         std::cout << "[INFO] Frame " << ++countedFrames << " finished\n";
     }
 }
