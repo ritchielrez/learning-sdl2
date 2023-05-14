@@ -4,3 +4,6 @@
 [submodule "vendor/ritTimer"]
 	path = vendor/ritTimer
 	url = https://github.com/ritchielrez/ritTimer
+[submodule "vendor/ECS"]
+	path = vendor/ECS
+	url = https://github.com/ritchielrez/ECS
