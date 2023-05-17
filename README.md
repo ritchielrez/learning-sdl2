@@ -20,8 +20,7 @@ git submodule update --recursive
 vcpkg\bootstrap-vcpkg.bat
 vcpkg\vcpkg install sdl2 sdl2-image
 cmake -Bbuild -S.
-cd build
-MSBuild.exe -m learning-sdl2.sln
+cmake --build build
 Debug\main.exe
 ```
 
@@ -31,8 +30,7 @@ git submodule update --recursive
 ./vcpkg/bootstrap-vcpkg.sh
 ./vcpkg/vcpkg install sdl2 sdl2-image
 cmake -Bbuild/ -S. -G"Ninja"
-cd build
-ninja
+cmake --build build
 ./main
 ```
 
