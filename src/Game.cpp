@@ -49,7 +49,7 @@ void Game::init(const char *title, uint32_t width, uint32_t height)
         return;
     }
 
-    sRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED);
+    sRenderer = SDL_CreateRenderer(mWindow, -1, 0);
 
     if (!sRenderer)
     {
