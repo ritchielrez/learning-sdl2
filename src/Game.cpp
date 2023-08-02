@@ -125,7 +125,7 @@ void Game::render()
 
 void Game::update(double deltaTime)
 {
-    map.update(deltaTime);
+    map.update();
     sManager.update(deltaTime);
 }
 

@@ -34,14 +34,14 @@ void Map::init(const char *texturePath)
 }
 
 // TODO: Make this update function work consistently well with different time steps
-void Map::update(double timeStep)
+void Map::update()
 {
     for (uint32_t i = 0; i < tilesTotal; ++i)
     {
-        grass[i]->getComponent<RenderComponent>().mPos.x -= 60 * timeStep;
+        grass[i]->getComponent<RenderComponent>().mPos.x -= 1;
         if (grass[i]->getComponent<RenderComponent>().mPos.x + tileWidth  <= 0)
         {
-            grass[i]->getComponent<RenderComponent>().mPos.x = tileWidth * (tilesTotal - 1) - 60 * timeStep;
+            grass[i]->getComponent<RenderComponent>().mPos.x = tileWidth * (tilesTotal - 1) - 1;
         }
     }
 
