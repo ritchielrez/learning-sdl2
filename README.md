@@ -1,4 +1,5 @@
 # Learning SDL2
+## WARNING! This project is no longer maintained.
 ## This project is a platformer in making using SDL2
 ### Description
 I love programming, specially in lower level languages like *C/C++*. But when I started learning the [Godot game engine](https://godotengine.org),
